@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>AdjustAR</title>
+  <meta name="description" content="AdjustAR: AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Facebook preview-->
+  <meta property="og:image" content="resources/social_card.png">
+  <!--   <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="400"> -->
+  <meta property="og:type" content="website" />
+  <!-- Remove or update this to the final page URL -->
+  <!-- <meta property="og:url" content="..."> -->
+  <meta property="og:title"
+    content="AdjustAR: AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content" />
+  <meta property="og:description"
+    content="AdjustAR: AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content, ACM UIST 2025" />
+
+  <!-- Twitter preview -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title"
+    content="AdjustAR: AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content" />
+  <meta name="twitter:description"
+    content="AdjustAR: AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content, ACM UIST 2025" />
+  <meta name="twitter:image" content="resources/social_card.png">
+
+  <!-- Google Scholar Meta Tags -->
+  <meta name="citation_title"
+    content="AdjustAR: AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content">
+  <meta name="citation_author" content="Nels Numan">
+  <meta name="citation_author" content="Jessica Van Brummelen">
+  <meta name="citation_author" content="Ziwen Lu">
+  <meta name="citation_author" content="Anthony Steed">
+  <meta name="citation_publication_date" content="2025-09">
+  <meta name="citation_conference_title"
+    content="Adjunct Proceedings of the 38th Annual ACM Symposium on User Interface Software and Technology">
+  <meta name="citation_conference" content="UIST 2025 Adjunct">
+  <meta name="citation_doi" content="10.1145/3746058.3758362">
+  <meta name="citation_publisher" content="Association for Computing Machinery">
+  <meta name="citation_pdf_url" content="resources/AdjustAR_UIST2025_preprint.pdf">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/746ee6bfa4.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="resources/favicon.ico">
+</head>
+
+<body>
+  <div class="container" style="text-align:center; padding:2rem 15px">
+    <div class="row" style="text-align:center">
+      <h1 style="margin-bottom:0.1rem; font-variant: small-caps;">AdjustAR</h1>
+      <h3 style="margin-top:0.1rem;margin-bottom:0.5rem;margin-left: auto; margin-right: auto;">
+        AI-Driven In-Situ Adjustment of Site-Specific Augmented Reality Content
+      </h3>
+      <h4 style="font-size:1.4em;">ACM UIST 2025 Poster</h4>
+    </div>
+    <div class="row" style="text-align:center">
+      <div class="col-xs-0 col-md-2"></div>
+      <div class="col-xs-12 col-md-8">
+        <h4>
+          <a style="font-size:1.1em;" href="https://nels.dev/">
+            <nobr>Nels Numan<sup>1</sup></nobr>
+          </a> &emsp;
+          <a style="font-size:1.1em;" href="https://jessvb.github.io">
+            <nobr>Jessica Van Brummelen</nobr><sup>2</sup>
+          </a> &emsp;
+          <a style="font-size:1.1em;" href="#">
+            <nobr>Ziwen Lu</nobr><sup>1</sup>
+          </a> &emsp;
+          <a style="font-size:1.1em;" href="https://wp.cs.ucl.ac.uk/anthonysteed/">
+            <nobr>Anthony Steed<sup>1</sup></nobr>
+          </a>
+        </h4>
+
+        <sup>1</sup>University College London&nbsp;&nbsp;&nbsp;<sup>2</sup>Niantic Spatial,
+        Inc.&nbsp;&nbsp;&nbsp;<sup><br>
+
+      </div>
+      <div class="col-xs-0 col-md-2"></div>
+    </div>
+  </div>
+
+  <div class="container" style="max-width: 1000px">
+    <div class="row" style="text-align: center; padding:1rem">
+      <div class="col-xs-4"></div>
+      <div class="col-xs-2">
+        <a href="resources/AdjustAR_UIST2025_preprint.pdf" style="color:inherit">
+          <a href="resources/AdjustAR_UIST2025_preprint.pdf">
+            <i class="fa-solid fa-file-pdf fa-4x"></i></a>
+      </div>
+      <div class="col-xs-2">
+        <a href="https://arxiv.org/abs/2508.06826" style="color:inherit;">
+          <a href="https://arxiv.org/abs/2508.06826">
+            <i class="fas fa-book fa-4x"></i></a>
+      </div>
+      <div class="col-xs-4"></div>
+    </div>
+  </div>
+
+  <div class="container" style="text-align:center; padding:1rem">
+    <br />
+    <img src="resources/teaser.jpg"
+      alt="This figure illustrates our system, CoCreatAR, being used by a user ex-situ on a desktop computer and another user in-situ on a mobile phone. It shows various meshes and visualizations augmented on the real-world location, including RGB-D point clouds, coarse meshes, and a virtual character representing the in-situ user on the ex-situ user's screen. For example, some coarse meshes are shown as rough planes outside of the original location mesh."
+      class="text-center" style="width: 100%; max-width: 1200px">
+  </div>
+
+  <div class="container" style="max-width: 1000px">
+    <h3>Abstract</h3>
+    <hr />
+    <p>
+      Site-specific outdoor AR experiences are typically authored using static 3D models, but are deployed in physical
+      environments that change over time. As a result, virtual content may become misaligned with its intended
+      real-world referents, degrading user experience and compromising contextual interpretation. We present <span
+        style="font-variant: small-caps;">AdjustAR</span>, a
+      system that supports in-situ correction of AR content in dynamic environments using multimodal large language
+      models (MLLMs). Given a composite image comprising the originally authored view and the current live user view
+      from the same perspective, an MLLM detects contextual misalignments and proposes revised 2D placements for
+      affected AR elements. These corrections are backprojected into 3D space to update the scene at runtime. By
+      leveraging MLLMs for visual-semantic reasoning, this approach enables automated runtime corrections to maintain
+      alignment with the authored intent as real-world target environments evolve.
+    </p>
+    <br />
+
+    <div class="row" style="text-align:center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+      <div class="col-xs-12" style="display: flex; justify-content: center;">
+        <figure><video width="100%" height="auto" controls poster="resources/video_poster.jpeg">
+            <source src="resources/teaser.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption>
+            <p></p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <h3>Examples</h3>
+    <hr />
+    <div class="row" style="text-align:center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+      <div class="col-xs-12">
+        <figure><video width="100%" height="auto" autoplay loop poster="resources/examples_video_poster.jpeg">
+            <source src="resources/examples.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption>
+            <p>Overview of early examples showcasing <em>AdjustAR</em>. From top left to bottom right: two birds already
+              properly aligned with the fountain edge (<em>AdjustAR</em> does not perform adjustments); an arrow
+              pointing to a first aid kit that has been moved (<em>AdjustAR</em> moves the arrow to the new location); a virtual sign
+              pointing at a missing physical sign (<em>AdjustAR</em> displays a rendering of the environment at authoring time);
+              arrows pointing at books, with some correctly and others incorrectly placed (<em>AdjustAR</em> moves the
+              incorrectly placed ones).
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+      <p>
+
+      </p>
+    </div>
+
+    <h3>Resources</h3>
+    <hr />
+    <div class="row" style="text-align: center">
+      <!-- <div class="col-xs-12">
+        <h4>Long-Form Video (5 minutes)</h4>
+        <div style="width: 100%; max-width: 1100px">
+          <iframe style="width: 100%; height: auto; aspect-ratio: 16 / 9; display: block;"
+            src="https://www.youtube.com/embed/aZTPbMtb4bw" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div> -->
+      <div class="col-xs-4"></div>
+      <div class="col-xs-4">
+        <h4>Paper</h4>
+        <a href="resources/AdjustAR_UIST2025_preprint.pdf">
+          <img src="resources/paper_thumb.jpg" alt="Paper" class="text-center" style="max-width:70%; border:0.15em solid;
+        border-radius:0.5em;"></a>
+      </div>
+      <div class="col-xs-4"></div>
+    </div>
+
+    <h4 style="padding-top:0.5em">BibTeX</h4>
+    <p>If you find this work useful for your research, please cite:</p>
+    <div class="card">
+      <div class="card-block">
+        <pre class="card-text clickselect">
+@inproceedings{numanAdjustAR2025,
+  title = {AdjustAR: {AI}-{Driven} {In}-{Situ} {Adjustment} of {Site}-{Specific} {Augmented} {Reality} {Content}},
+  shorttitle = {AdjustAR},
+  booktitle = {Adjunct Proceedings of the 38th {{Annual ACM Symposium}} on {{User Interface Software}} and {{Technology}}},
+  author = {Numan, Nels and Van Brummelen, Jessica and Lu, Ziwen and Steed, Anthony},
+  year = {2025},
+  month = {sept},
+  series = {{{UIST}} '25},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  doi = {10.1145/3746058.3758362},
+}</pre>
+      </div>
+    </div>
+
+    <h3>Acknowledgements</h3>
+    <hr />
+    This work was partially supported by the European Union's Horizon 2020 Research and Innovation program as part of
+    project RISE under grant agreement No. 739578. We thank Simon Julier, Gabriel Brostow, and Niladri Dutt for valuable
+    research discussions, and Dat Chu for assistance with testing logistics. The raccoon model used in this work was
+    sourced from Google Poly.
+  </div>
+
+  <div class="container" style="padding-top:3rem; padding-bottom:3rem">
+    <p style="text-align:center">
+      &#169; This webpage was inspired by this
+      <a href="https://nianticlabs.github.io/simplerecon/">template</a>.
+    </p>
+  </div>
+
+</body>
+
+</html>
