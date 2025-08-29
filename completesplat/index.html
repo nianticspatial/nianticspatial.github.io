@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Complete Gaussian Splats from a Single Image with Denoising Diffusion Models.">
+  <meta name="keywords" content="Gaussian Splats, Denoising Diffusion Models, 3D Vision, Deep Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complete Gaussian Splats from a Single Image with Denoising Diffusion Models</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-11CFDTQS8H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-11CFDTQS8H');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- latex equation -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://ziwei-liao.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <!-- <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a> 
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Complete Gaussian Splats from a Single Image with Denoising Diffusion Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ziwei-liao.github.io/">Ziwei Liao</a><sup>1</sup>,
+            </span>
+            <span class="author-block"></span>
+              <a href="https://masayed.com/">Mohamed Sayed</a><sup>2</sup>,
+            </span>
+            <span class="author-block"></span>
+              <a href="https://www.trailab.utias.utoronto.ca/steven-waslander">Steven L. Waslander</a><sup>1</sup>,
+            </span>
+            <!-- break line -->
+            <br>
+            <span class="author-block"></span>
+              <a href="https://scholar.google.com/citations?user=7wWsNNcAAAAJ&hl=en">Sara Vicente</a><sup>2</sup>,
+            </span>
+            <span class="author-block"></span>
+              <a href="https://dantkz.github.io/about/">Daniyar Turmukhambetov</a><sup>2</sup>,
+            </span>
+            <span class="author-block"></span>
+              <a href="https://michaelfirman.co.uk/">Michael Firman</a><sup>2</sup>
+            </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Toronto,</span>
+            <span class="author-block"><sup>2</sup>Niantic Spatial</span>
+            </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/TBD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/TBD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/teaser_2.png" alt="Teaser 2" style="width: 70%;" />
+      </div>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        <h2 class="subtitle has-text-left">
+        <!-- bold it -->
+        <strong>We predict full Gaussian scenes from a single RGB input image.</strong>
+
+        Our diffusion-based model outputs sharper results than existing methods, and is also able to sample diverse completion "modes" given a single image as input.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+
+          <!-- Change latex flags into html -->
+          <p>
+          Gaussian splatting typically requires dense observations of the scene and can fail to reconstruct occluded and unobserved areas. 
+          We propose a latent diffusion model to reconstruct a <em>complete</em> 3D scene with Gaussian splats, including the occluded parts, from only a single image during inference.
+
+          </p>
+
+          <p>
+          Completing the unobserved surfaces of a scene is challenging due to the ambiguity of the plausible surfaces.  
+          Conventional methods use a regression-based formulation to predict a single <em>mode</em> for occluded and out-of-frustum surfaces, leading to blurriness, implausibility, and failure to capture multiple possible explanations.  
+          Thus, they often address this problem partially, focusing either on objects isolated from the background, reconstructing only visible surfaces, or failing to extrapolate far from the input views.  
+          </p>
+
+          <p>
+          In contrast, we propose a <em>generative</em> formulation to learn a distribution of 3D representations of Gaussian splats conditioned on a single input image.  
+          To address the lack of ground-truth training data, we propose a Variational AutoReconstructor to learn a latent space only from 2D images in a self-supervised manner, over which a diffusion model is trained.
+          Our method generates faithful reconstructions and diverse samples with the ability to complete the occluded surfaces for high-quality 360&deg; renderings.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Related Work</h2>
+      <div class="has-text-centered">
+        <img src="./static/visfiles/related_work.png" alt="Teaser 2" style="width: 100%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Comparison to Related Works.} The table highlights the main differences from closely related baselines. We propose a generative method with diffusion models to reconstruct 3D scenes with Gaussian splats in real time from a single image. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Comparison to Related Work.</strong> The table highlights the main differences from closely related baselines. We propose a generative method with diffusion models to reconstruct 3D scenes with Gaussian splats in real time from a single image.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Method</h2>
+      <div class="has-text-centered">
+        <img src="./static/visfiles/autoreconstructor_cropped.png" alt="Teaser 2" style="width: 100%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+            <!-- \textbf{Learning a latent space for 3D representations using only images, without ground-truth 3D data.}
+          (a) Variational Autoencoders require groundtruth samples of high-dimensional variables \( x \) to learn a latent space;  
+          (b) We propose the \textit{Variational AutoReconstructor}, which learns a latent space for \( x \) using supervision from only their projections \( \{m = f(x)\} \). -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Learning a latent space for 3D representations using only images, without ground-truth 3D data.</strong>
+          (a) Variational Autoencoders require groundtruth samples of high-dimensional variables \( x \) to learn a latent space;
+          (b) We propose the <em>Variational AutoReconstructor</em>, which learns a latent space for \( x \) using supervision from only their projections \( \{m = f(x)\} \).
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/training_step1_edited.png" alt="Teaser 2" style="width: 100%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Learning a latent space for Splatter Images.} Our encoder predicts the parameters of a normal distribution over latents. We reconstruct a sampled latent into \( H \times W \times MN \) Splatter Image representations. We render the Gaussian splats from the viewpoints of the target training images and optimize reprojection losses between the rendered and ground-truth RGB images. Skip connections are critical to preserving the high-frequency details of the predictions, as shown in Figure~\ref{fig:skip-connection}. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Learning a latent space for Splatter Images.</strong> Our encoder predicts the parameters of a normal distribution over latents. We reconstruct a sampled latent into \( H \times W \times MN \) Splatter Image representations. We render the Gaussian splats from the viewpoints of the target training images and optimize reprojection losses between the rendered and ground-truth RGB images. Skip connections are critical to preserving the high-frequency details of the predictions, as shown in the Figure below.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/training_step2.png" alt="Teaser 2" style="width: 100%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Training a denoising diffusion model over the learned latent space.}  
+The network learns to convert a corrupted noisy latent code back to a ground-truth latent code representing a Splatter Image, by conditioning on a single input image. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Training a denoising diffusion model over the learned latent space.</strong> The network learns to convert a corrupted noisy latent code back to a ground-truth latent code representing a Splatter Image, by conditioning on a single input image.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/inference_edited.png" alt="Teaser 2" style="width: 100%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Diffusion Inference Pipeline.}  
+We first compute input image features using the Stable Diffusion encoder. A random latent code and the input image features are concatenated and passed through \( R \) steps of the denoising diffusion process. The denoised latent code, together with skip connections from the encoder, is then passed through the reconstructor to produce a Splatter Image representation. This representation is subsequently backprojected to create 3D Gaussian splats. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Diffusion Inference Pipeline.</strong> We first compute input image features using the Stable Diffusion encoder. A random latent code and the input image features are concatenated and passed through \( R \) steps of the denoising diffusion process. The denoised latent code, together with skip connections from the encoder, is then passed through the reconstructor to produce a Splatter Image representation. This representation is subsequently backprojected to create 3D Gaussian splats.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/skip_connections.png" alt="Teaser 2" style="width: 45%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Including skip connections} helps preserve high-frequency details from the input view in the AutoReconstructor, improving the faithfulness of appearance. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Including skip connections</strong> helps preserve high-frequency details from the input view in the AutoReconstructor, improving the faithfulness of appearance.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Experiments</h2>
+      <div class="has-text-centered">
+        <img src="./static/visfiles/pixelnerf_comp.png" alt="Teaser 2" style="width: 60%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Qualitative results} on the ``Hydrants'' category from the CO3D dataset. We produce significantly sharper results than PixelNeRF~\cite{yu2021pixelnerf}, and comparable or better performance on object areas compared to DFM~\cite{tewari2023diffusion}, while being significantly faster. Computation times are reported in Table~\ref{tab:whole_object_results}. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Qualitative results</strong> on the "Hydrants" category from the CO3D dataset. We produce significantly sharper results than PixelNeRF, and comparable or better performance on object areas compared to DFM, while being significantly faster.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/teddybear_images.png" alt="Teaser 2" style="width: 80%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Qualitative results} on the ``TeddyBears'' category from the CO3D dataset. Our model produces sharper results with higher-quality details compared to the baselines LGM~\cite{tang2024lgm} and SplatterImage~\cite{szymanowicz2024splatter}, especially in occluded areas. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Qualitative results</strong> on the "TeddyBears" category from the CO3D dataset. Our model produces sharper results with higher-quality details compared to the baselines LGM and SplatterImage, especially in occluded areas.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/re10k_updated.png" alt="Teaser 2" style="width: 65%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Qualitative Results on the RealEstate10K Dataset.}  
+Our method achieves comparable performance to DFM~\cite{tewari2023diffusion}, a diffusion-based NeRF model, and performs better in some challenging regions (highlighted with dotted boxes), while being significantly faster at inference time. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Qualitative Results on the RealEstate10K Dataset.</strong>
+          Our method achieves comparable performance to DFM, a diffusion-based NeRF model, and performs better in some challenging regions (highlighted with dotted boxes), while being significantly faster at inference time.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/gen_performance_v3.png" alt="Teaser 2" style="width: 80%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{3D Generative Performance.} Our diffusion model demonstrates the ability to (1) sample diverse outputs in ambiguous situations, and (2) fill in missing areas using 3D priors learned from large datasets with multi-view consistency. Note the model is trained purely from only 2D images. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>3D Generative Performance.</strong> Our diffusion model demonstrates the ability to (1) sample diverse outputs in ambiguous situations, and (2) fill in missing areas using 3D priors learned from large datasets with multi-view consistency. Note the model is trained purely from only 2D images.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="./static/visfiles/diffusion_results.png" alt="Teaser 2" style="width: 100%;" />
+      </div>
+      <h2 class="subtitle has-text-left">
+          <!-- \textbf{Diverse samples from our diffusion model on Hydrants in the CO3D dataset}. 
+We intentionally show three samples with increasing diversity from left to right by controlling the classifier-free guidance and skip connection weights. 
+The samples transition from faithful reconstruction of the input image to diverse generations exhibiting variations in texture, shape, and style. 
+In contrast, the baseline DFM~\cite{tewari2023diffusion} exhibits only small texture variations on object areas. -->
+
+          <!-- Change latex into html; pay attention to the equations such as x, f(x)... -->
+          <strong>Diverse samples from our diffusion model on Hydrants in the CO3D dataset.</strong>
+          We intentionally show three samples with increasing diversity from left to right by controlling the classifier-free guidance and skip connection weights.
+          The samples transition from faithful reconstruction of the input image to diverse generations exhibiting variations in texture, shape, and style.
+          In contrast, the baseline DFM exhibits only small texture variations on object areas.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- Add a pure text section: we present more quantitive and qualitative results in our main paper and Supplementary Materials. -->
+<section class="section">
+    <div class="container is-max-desktop">
+      <!-- <h2 class="title">More Results</h2> -->
+    <div class="hero-body">
+      <h2 class="subtitle has-text-left">
+      <em>We present more quantitative and qualitative results in our main paper and Supplementary Materials.</em>
+      </h2>
+    </div>
+    </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{liao2025complete,
+  author    = {Liao, Ziwei and Sayed, Mohamed and Waslander, Steven L. and Vicente, Sara and Turmukhambetov, Daniyar and Firman, Michael},
+  title     = {Complete Gaussian Splats from a Single Image with Denoising Diffusion Models},
+  journal   = {arXiv},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. 
+            We acknowledge the authors of <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the website template.
+
+          </p>
+          <p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
