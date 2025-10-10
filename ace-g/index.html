@@ -1,1 +1,318 @@
-Coming soon...
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>
+      ACE-G: Improving Generalization of Scene Coordinate Regression Through Query
+      Pre-Training
+    </title>
+    <meta
+      name="description"
+      content="ACE-G: Improving Generalization of Scene Coordinate Regression Through Query Pre-Training"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=yes"
+    />
+    <meta charset="utf-8" />
+    <link
+      href="static/favicon-black.png"
+      rel="icon"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      href="static/favicon-white.png"
+      rel="icon"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!--Facebook preview-->
+    <meta
+      property="og:title"
+      content="ACE-G: Improving Generalization of Scene Coordinate Regression Through Query Pre-Training"
+    />
+    <meta
+      property="og:description"
+      content="Better generalization for scene coordinate regression through pre-training of a scene-agnostic coordinate regressor."
+    />
+    <meta property="og:url" content="https://nianticspatial.github.io/ace-g/" />
+
+    <!--Twitter preview-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ACE-G: Improving Generalization of Scene Coordinate Regression Through Query Pre-Training"
+    />
+    <meta
+      name="twitter:description"
+      content="Better generalization for scene coordinate regression through pre-training of a scene-agnostic coordinate regressor."
+    />
+
+    <!--Style-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="style.css" rel="stylesheet" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script
+      src="https://kit.fontawesome.com/746ee6bfa4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/app.js"></script>
+
+    <!-- Carousel logic: -->
+    <script src="js/app.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row" style="text-align: center">
+        <h1>ACE-G</h1>
+        <h2>
+          Improving Generalization of Scene Coordinate Regression Through Query
+          Pre-Training
+        </h2>
+        <div class="venue">ICCV 2025</div>
+      </div>
+      <div class="authors">
+        <h4 class="author">
+          <a href="https://roym899.github.io/">
+            <nobr>Leonard Bruns</nobr>
+          </a>
+        </h4>
+        <h4 class="author">
+          <a href="https://scholar.google.com/citations?user=m_SPRGUAAAAJ">
+            <nobr>Axel Barroso-Laguna</nobr>
+          </a>
+        </h4>
+        <h4 class="author">
+          <a href="https://scholar.google.it/citations?user=r7osSm0AAAAJ">
+            <nobr>Tommaso Cavallari</nobr>
+          </a>
+        </h4>
+        <h4 class="author">
+          <a href="https://amonszpart.github.io/">
+            <nobr>Áron Monszpart</nobr>
+          </a>
+        </h4>
+        <h4 class="author">
+          <a href="https://scholar.google.com/citations?user=l-zRzDEAAAAJ">
+            <nobr>Sowmya Munukutla</nobr>
+          </a>
+        </h4>
+        <h4 class="author">
+          <a href="https://www.robots.ox.ac.uk/~victor/">
+            <nobr>Victor Adrian Prisacariu</nobr>
+          </a>
+        </h4>
+        <h4 class="author">
+          <a href="https://ebrach.github.io/">
+            <nobr>Eric Brachmann</nobr>
+          </a>
+        </h4>
+      </div>
+      <div>
+        <a class="company" href="https://www.nianticspatial.com/">
+          <img
+            class="company-logo"
+            src="static/nianticspatial-logo-white.svg"
+            alt="nianticspatial"
+          />
+        </a>
+      </div>
+    </div>
+
+    <div class="icons">
+      <a href="static/aceg.pdf">
+        <img src="static/pdf.svg" alt="pdf" class="icon" />
+      </a>
+      <a href="https://arxiv.org/abs/xxxx.xxxxx">
+        <img src="static/arxiv.svg" alt="arXiv" class="icon" />
+      </a>
+      <a href="https://www.youtube.com/watch?v=Dr4sFdZzBgU">
+        <img src="static/youtube.svg" alt="YouTube" class="icon" />
+      </a>
+      <a href="static/aceg_poster.pdf">
+        <img src="static/poster.svg" alt="Poster" class="icon" />
+      </a>
+      <a href="https://github.com/nianticspatial/ace-g">
+        <img src="static/github.svg" alt="arXiv" class="icon" />
+      </a>
+    </div>
+
+    <div style="height: 5rem"></div>
+    <div class="container">
+      <video
+        id="overviewVideo"
+        autoplay
+        loop
+        muted
+        style="
+          max-width: 70%;
+          height: auto;
+          box-sizing: border-box;
+          margin: 0 auto;
+          display: block;
+        "
+      >
+        <source src="resources/videos/s00014.mp4" type="video/mp4" />
+      </video>
+
+      <h3 id="abstract_h3">Abstract</h3>
+      <hr />
+      <p>
+        Scene coordinate regression (SCR) has established itself as a promising
+        learning-based approach to visual relocalization. After mere minutes of
+        scene-specific training, SCR models estimate camera poses of query images with
+        high accuracy. Still, SCR methods fall short of the generalization capabilities of
+        more classical feature-matching approaches. When imaging conditions of query
+        images, such as lighting or viewpoint, are too different from the training views,
+        SCR models fail. Failing to generalize is an inherent limitation of previous SCR
+        frameworks, since their training objective is to encode the training views in the
+        weights of the coordinate regressor itself. The regressor essentially overfits to
+        the training views, by design. We propose to separate the coordinate regressor and
+        the map representation into a generic transformer and a scene-specific map code.
+        This separation allows us to pre-train the transformer on tens of thousands of
+        scenes. More importantly, it allows us to train the transformer to generalize from
+        mapping images to unseen query images during pre-training. We demonstrate on
+        multiple challenging relocalization datasets that our method, ACE-G, leads to
+        significantly increased robustness while keeping the computational footprint
+        attractive.
+      </p>
+
+      <h3>5-Minute Presentation</h3>
+      <hr />
+      <div class="row" style="text-align: center">
+        <video controls>
+          <source src="static/presentation.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <h3>Scene-Agnostic Coordinate Regressor</h3>
+      <hr />
+      <p>
+        Most scene coordinate regressors are light-weight networks trained fully per
+        scene. These networks map patch features to their corresponding 3D coordinate.
+        Instead, we split the <span style="">scene-specific regressor</span> into a set of
+        <span>scene-specific map codes</span> and a
+        <span>scene-agnostic coordinate regressor</span>. The scene-specific part is still
+        found through backpropagation-based optimization, but the regressor can be
+        pre-trained specifically for improving generalization.
+      </p>
+      <a class="row" href="static/architecture.svg">
+        <img
+          id="architecture"
+          src="static/architecture.svg"
+          alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
+        />
+      </a>
+
+      <!-- <p> -->
+      <!--   We use a light-weight, cross-attention-only transformer as the scene coordinate -->
+      <!--   regressor. -->
+      <!-- </p> -->
+
+      <h3>Query Pre-Training for Improved Generalization</h3>
+      <hr />
+      <p>
+        We pre-train the scene-agnostic coordinate regressor by mimicking its later use
+        case: first, find the map codes given a set of mapping images; then, estimate the
+        scene coordinates for query images <emph>different</emph> from the mapping images.
+        These query images can contain novel viewpoints or other scene changes such as
+        lighting and object placement.
+      </p>
+      <p>
+        We implement this idea by alternating between mapping and query pre-training
+        iterations across hundreds of scenes in parallel (three shown in the illustration
+        below). During mapping iterations, the map codes and the regressor are optimized
+        jointly. During query iterations, only the regressor is optimized. This latter
+        part explicitly aims to force the network to generalize from the mapping data
+        (that was moved into the map codes) to query data.
+      </p>
+      <a class="row" href="static/pre-training.svg">
+        <img
+          src="static/pre-training.svg"
+          alt="Pre-training architecture split into mapping pre-training and quer-pretraining."
+        />
+      </a>
+
+      <h3>Mapping</h3>
+      <hr />
+      <p>
+        Once the scene-agnostic regressor is pre-trained, we can find the map codes for
+        new scenes through optimization. Starting from a randomly initialized map codes,
+        we optimize the negative log-likelihood of the reprojection error after projecting
+        the coordinates to the image plane. While we currently pre-train with 3D
+        supervision, our method does not require 3D information at mapping time for new
+        scenes.
+      </p>
+      <a class="row" href="static/mapping.svg">
+        <img
+          id="mapping"
+          src="static/mapping.svg"
+          alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
+        />
+      </a>
+
+      <h3>Relocalization</h3>
+      <hr />
+      <p>
+        Once the map codes for a new scene are optimized, we can relocalize query images
+        within the scene. We use the estimated uncertainty to prefilter the estimated
+        2D-3D correspondences before finding the pose using a robust PnP solver.
+      </p>
+      <a class="row" href="static/relocalization.svg">
+        <img
+          id="relocalization"
+          src="static/relocalization.svg"
+          alt="To relocalize an image, we first estimate the 2D-3D correspondences, prefilter them based on the estimated uncertainty, and use a PnP solver to find its pose."
+        />
+      </a>
+      
+      <h3>BibTeX</h3>
+      <hr />
+      <p>
+        If you find this work useful for your research, please consider citing our paper:
+      </p>
+      <div>
+        <pre>
+@inproceedings{bruns2025aceg,
+  title={{ACE-G}: Improving Generalization of Scene Coordinate Regression Through Query Pre-Training},
+  author={Bruns, Leonard and Barroso-Laguna, Axel and Cavallari, Tommaso and Monszpart, {\'{A}}ron and Munukutla, Sowmya and Prisacariu, Victor and Brachmann, Eric},
+  booktitle={arXiv preprint arXiv:xxxx.xxxxx},
+  year={2025}
+}</pre
+        >
+      </div>
+
+      <pre></pre>
+
+      <script>
+        document.getElementById("overviewVideo").playbackRate = 0.8;
+        document.getElementById("cambridge_shop").playbackRate = 1.2;
+        document.getElementById("KingsCollege").playbackRate = 1.2;
+        document.getElementById("Indoor6Scene2_light").playbackRate = 0.5;
+        document.getElementById("Indoor6Scene2_dark").playbackRate = 0.5;
+        document.getElementById("OldHospital").playbackRate = 1.1;
+        document.getElementById("StMaryChurch").playbackRate = 0.9;
+      </script>
+    </div>
+  </body>
+</html>
