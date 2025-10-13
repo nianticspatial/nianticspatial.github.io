@@ -15,6 +15,7 @@ pre {
 
 .row {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 body {
@@ -22,6 +23,8 @@ body {
   color: #ffffff;
   max-width: 95ch;
   margin: auto;
+  padding-left: 2ch;
+  padding-right: 2ch;
 }
 
 h1 {
@@ -94,6 +97,26 @@ video::-webkit-media-controls-panel {
     hue-rotate(302deg) brightness(94%) contrast(94%);
 }
 
+.scene-btn {
+  border-width: medium;
+  border-color: #e07467;
+  background-color: #1b1b1b;
+}
+.scene-btn:hover, .scene-btn:focus{
+  border-width: medium;
+  border-color: #e07467 !important;
+  background-color: #303030 !important;
+  color: #ffffff !important;
+}
+.scene-btn.active, .scene-btn:active {
+  border-width: medium;
+  border-color: #e07467 !important;
+  background-color: #e07467 !important;
+}
+.dataset-label {
+  margin-top: 0.5ch;
+}
+
 a {
   color: #e07467;
   text-decoration: none;
@@ -131,9 +154,8 @@ p {
   margin-bottom: 5rem;
 }
 
-.carousel-indicators {
-  top: 96%;
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg);
+.buttons {
+  text-align: center;
 }
 
 .carousel-caption {
@@ -148,16 +170,16 @@ p {
 }
 
 .carousel-control-prev-icon {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(74deg) brightness(104%) contrast(101%);
   position: absolute;
-  top: 95%;
+  top: 85%;
   background-size: 2em 20em;
 }
 
 .carousel-control-next-icon {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(74deg) brightness(104%) contrast(101%);
   position: absolute;
-  top: 95%;
+  top: 85%;
   background-size: 2em 20em;
 }
 
@@ -171,167 +193,4 @@ p {
 
 .carousel-indicators button {
   display: none;
-}
-
-/* Make the active item visible, but only if its example is active */
-#carouselExampleChallenging.show-example-1-active .example1.active,
-#carouselExampleChallenging.show-example-2-active .example2.active {
-  display: block;
-}
-
-#carouselExampleChallenging.show-example-1-active .carousel-indicators button {
-  /* Hide all when Example 1 is active, then show the ones we want */
-  display: none !important;
-}
-
-#carouselExampleChallenging.show-example-1-active
-  .carousel-indicators
-  button[data-bs-slide-to="0"],
-#carouselExampleChallenging.show-example-1-active
-  .carousel-indicators
-  button[data-bs-slide-to="1"] {
-  display: inline-block !important; /* Show indicators for Example 1 */
-}
-
-#carouselExampleChallenging.show-example-2-active .carousel-indicators button {
-  /* Hide all when Example 2 is active, then show the ones we want */
-  display: none !important;
-}
-
-#carouselExampleChallenging.show-example-2-active
-  .carousel-indicators
-  button[data-bs-slide-to="2"],
-#carouselExampleChallenging.show-example-2-active
-  .carousel-indicators
-  button[data-bs-slide-to="3"] {
-  display: inline-block !important; /* Show indicators for Example 2 */
-}
-
-#carouselExampleCaptions.show-example-1-active .example1.active,
-#carouselExampleCaptions.show-example-2-active
-  .example2.active
-  #carouselExampleCaptions.show-example-3-active
-  .example3.active
-  #carouselExampleCaptions.show-example-4-active
-  .example4.active {
-  display: block;
-}
-
-#carouselExampleCaptions.show-example-1-active .carousel-indicators button {
-  /* Hide all when Example 1 is active, then show the ones we want */
-  display: none !important;
-}
-
-#carouselExampleCaptions.show-example-1-active
-  .carousel-indicators
-  button[data-bs-slide-to="0"],
-#carouselExampleCaptions.show-example-1-active
-  .carousel-indicators
-  button[data-bs-slide-to="1"] {
-  display: inline-block !important; /* Show indicators for Example 1 */
-}
-
-#carouselExampleCaptions.show-example-2-active .carousel-indicators button {
-  /* Hide all when Example 2 is active, then show the ones we want */
-  display: none !important;
-}
-
-#carouselExampleCaptions.show-example-3-active .carousel-indicators button {
-  /* Hide all when Example 2 is active, then show the ones we want */
-  display: none !important;
-}
-
-#carouselExampleCaptions.show-example-4-active .carousel-indicators button {
-  /* Hide all when Example 2 is active, then show the ones we want */
-  display: none !important;
-}
-
-#carouselExampleCaptions.show-example-2-active
-  .carousel-indicators
-  button[data-bs-slide-to="2"],
-#carouselExampleCaptions.show-example-2-active
-  .carousel-indicators
-  button[data-bs-slide-to="3"] {
-  display: inline-block !important; /* Show indicators for Example 2 */
-}
-
-#carouselExampleCaptions.show-example-3-active
-  .carousel-indicators
-  button[data-bs-slide-to="4"],
-#carouselExampleCaptions.show-example-3-active
-  .carousel-indicators
-  button[data-bs-slide-to="5"] {
-  display: inline-block !important; /* Show indicators for Example 2 */
-}
-
-#carouselExampleCaptions.show-example-4-active
-  .carousel-indicators
-  button[data-bs-slide-to="6"],
-#carouselExampleCaptions.show-example-4-active
-  .carousel-indicators
-  button[data-bs-slide-to="7"] {
-  display: inline-block !important; /* Show indicators for Example 2 */
-}
-
-/* Ensure the initial active indicator is visible on load */
-.carousel-indicators button[data-bs-slide-to="0"] {
-  display: inline-block;
-}
-
-/* Default button style (gray) */
-#example1Btn,
-#DatasetBtn1,
-#DatasetBtn2,
-#DatasetBtn3,
-#DatasetBtn4,
-#example2Btn {
-  background-color: #808080; /* Gray */
-  color: white;
-  border: none;
-}
-
-/* Active button style (orange) */
-#example1Btn.active,
-#DatasetBtn1.active,
-#DatasetBtn2.active,
-#DatasetBtn3.active,
-#DatasetBtn4.active,
-#example2Btn.active {
-  background-color: #df471c; /* Orange */
-  color: white;
-  border: none;
-}
-
-/* Ensure Bootstrap's default active state doesn't interfere */
-#example1Btn:focus,
-#example1Btn:active,
-#DatasetBtn1:focus,
-#DatasetBtn1:active,
-#DatasetBtn2:focus,
-#DatasetBtn2:active,
-#DatasetBtn3:focus,
-#DatasetBtn3:active,
-#DatasetBtn4:focus,
-#DatasetBtn4:active,
-#example2Btn:focus,
-#example2Btn:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.centered-video {
-  max-width: 80%;
-  max-height: 80%;
-  margin: auto;
-  display: block;
-}
-
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 40px;
-}
-
-.card-text {
-  margin: 10px 0 10px 20px; /* Adjust these values as needed */
 }

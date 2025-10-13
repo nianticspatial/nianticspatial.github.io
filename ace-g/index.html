@@ -75,10 +75,6 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    <script src="js/app.js"></script>
-
-    <!-- Carousel logic: -->
-    <script src="js/app.js"></script>
   </head>
 
   <body>
@@ -272,6 +268,109 @@
       />
     </a>
 
+    <!-- Video Carousel -->
+    <div id="sceneCarousel" class="carousel slide mb-4" data-bs-ride="false">
+      <div class="carousel-inner">
+        <!-- Indoor-6 Videos -->
+        <div class="carousel-item active">
+          <div class="ratio ratio-16x9">
+            <video class="d-block w-100" loop muted autoplay>
+              <source src="static/teaser.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Indoor-6 Scene 1</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-16x9">
+            <video class="d-block w-100" loop muted>
+              <source src="static/presentation.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Indoor-6 Scene 3</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-16x9">
+            <video class="d-block w-100" loop muted>
+              <source src="static/teaser.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Indoor-6 Scene 5</h5>
+          </div>
+        </div>
+        <!-- RIO10 Videos -->
+        <div class="carousel-item">
+          <div class="ratio ratio-16x9">
+            <video class="d-block w-100" loop muted>
+              <source src="static/presentation.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>RIO10 Scene 1</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-16x9">
+            <video class="d-block w-100" loop muted>
+              <source src="static/teaser.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>RIO10 Scene 3</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-16x9">
+            <video class="d-block w-100" loop muted>
+              <source src="static/presentation.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>RIO10 Scene 5</h5>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#sceneCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#sceneCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-sm-3 mb-3 buttons">
+        <div class="btn-group" role="group" aria-label="Indoor-6 scenes">
+          <button type="button" class="btn btn-primary scene-btn" data-slide="0">1</button>
+          <button type="button" class="btn btn-primary scene-btn" data-slide="1">3</button>
+          <button type="button" class="btn btn-primary scene-btn" data-slide="2">5</button>
+        </div>
+        <h6 class="mb-2 dataset-label">Indoor-6</h6>
+      </div>
+      <div class="col-sm-3 mb-3 buttons">
+        <div class="btn-group" role="group" aria-label="RIO10 scenes">
+          <button type="button" class="btn btn-secondary scene-btn" data-slide="3">1</button>
+          <button type="button" class="btn btn-secondary scene-btn" data-slide="4">3</button>
+          <button type="button" class="btn btn-secondary scene-btn" data-slide="5">5</button>
+        </div>
+        <h6 class="mb-2 dataset-label">RIO10</h6>
+      </div>
+    </div>
+    
+
     <h3>BibTeX</h3>
     <hr />
     <p>
@@ -291,13 +390,68 @@
     <pre></pre>
 
     <script>
-      document.getElementById("overviewVideo").playbackRate = 0.8;
-      document.getElementById("cambridge_shop").playbackRate = 1.2;
-      document.getElementById("KingsCollege").playbackRate = 1.2;
-      document.getElementById("Indoor6Scene2_light").playbackRate = 0.5;
-      document.getElementById("Indoor6Scene2_dark").playbackRate = 0.5;
-      document.getElementById("OldHospital").playbackRate = 1.1;
-      document.getElementById("StMaryChurch").playbackRate = 0.9;
+      // Scene carousel control - wrapped in IIFE to avoid conflicts
+      (function() {
+        $(document).ready(function() {
+          // Debug: check if elements exist
+          console.log('Scene buttons found:', $('.scene-btn').length);
+          console.log('Carousel found:', $('#sceneCarousel').length);
+          
+          // Initialize carousel first
+          $('#sceneCarousel').carousel({
+            interval: false,
+            wrap: false
+          });
+          
+          // Function to update active button based on slide index
+          function updateActiveButton(slideIndex) {
+            $('.scene-btn').removeClass('active');
+            $('.scene-btn[data-slide="' + slideIndex + '"]').addClass('active');
+          }
+          
+          // Function to play video for current slide
+          function playCurrentVideo() {
+            $('#sceneCarousel video').each(function() {
+              this.pause();
+            });
+            
+            setTimeout(function() {
+              const currentVideo = $('#sceneCarousel .carousel-item.active video')[0];
+              if (currentVideo) {
+                currentVideo.currentTime = 0;
+                currentVideo.play().catch(e => console.log('Video play failed:', e));
+              }
+            }, 300);
+          }
+          
+          // Add click event listeners to all scene buttons
+          $('.scene-btn').on('click', function() {
+            console.log('Button clicked:', $(this).text(), 'data-slide:', $(this).attr('data-slide'));
+            
+            const slideIndex = parseInt($(this).attr('data-slide'));
+            
+            // Use Bootstrap carousel method
+            $('#sceneCarousel').carousel(slideIndex);
+            
+            // Update active states
+            updateActiveButton(slideIndex);
+            
+            // Video control
+            playCurrentVideo();
+          });
+
+          // Listen for carousel slide events (left/right arrow clicks)
+          $('#sceneCarousel').on('slid.bs.carousel', function(event) {
+            const slideIndex = $(event.relatedTarget).index();
+            console.log('Carousel slid to index:', slideIndex);
+            updateActiveButton(slideIndex);
+            playCurrentVideo();
+          });
+
+          // Set initial active button
+          updateActiveButton(0);
+        });
+      })();
     </script>
   </body>
 </html>
