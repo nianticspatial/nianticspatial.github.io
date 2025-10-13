@@ -43,6 +43,15 @@ h4 {
   font-size: min(calc(0.9rem + 00.9vw), 1.4rem);
 }
 
+video { 
+  clip-path: inset(3px 3px);
+}
+
+.brightness-fix {
+  filter: brightness(94%);
+}
+
+
 video::-webkit-media-controls-panel {
   background-image: linear-gradient(transparent, transparent) !important;
 }
