@@ -140,7 +140,7 @@
     </div>
 
     <div class="icons">
-      <a href="static/aceg.pdf">
+      <a href="static/ace-g.pdf">
         <img src="static/pdf.svg" alt="pdf" class="icon" />
       </a>
       <a href="https://arxiv.org/abs/xxxx.xxxxx">
@@ -157,162 +157,147 @@
       </a>
     </div>
 
-    <div style="height: 5rem"></div>
-    <div class="container">
-      <video
-        id="overviewVideo"
-        autoplay
-        loop
-        muted
-        style="
-          max-width: 70%;
-          height: auto;
-          box-sizing: border-box;
-          margin: 0 auto;
-          display: block;
-        "
-      >
-        <source src="resources/videos/s00014.mp4" type="video/mp4" />
+    <div class="row" style="text-align: center">
+      <video loop muted autoplay>
+        <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/teaser.mp4" type="video/mp4" />
       </video>
+    </div>
 
-      <h3 id="abstract_h3">Abstract</h3>
-      <hr />
-      <p>
-        Scene coordinate regression (SCR) has established itself as a promising
-        learning-based approach to visual relocalization. After mere minutes of
-        scene-specific training, SCR models estimate camera poses of query images with
-        high accuracy. Still, SCR methods fall short of the generalization capabilities of
-        more classical feature-matching approaches. When imaging conditions of query
-        images, such as lighting or viewpoint, are too different from the training views,
-        SCR models fail. Failing to generalize is an inherent limitation of previous SCR
-        frameworks, since their training objective is to encode the training views in the
-        weights of the coordinate regressor itself. The regressor essentially overfits to
-        the training views, by design. We propose to separate the coordinate regressor and
-        the map representation into a generic transformer and a scene-specific map code.
-        This separation allows us to pre-train the transformer on tens of thousands of
-        scenes. More importantly, it allows us to train the transformer to generalize from
-        mapping images to unseen query images during pre-training. We demonstrate on
-        multiple challenging relocalization datasets that our method, ACE-G, leads to
-        significantly increased robustness while keeping the computational footprint
-        attractive.
-      </p>
+    <h3 id="abstract_h3">Abstract</h3>
+    <hr />
+    <p>
+      Scene coordinate regression (SCR) has established itself as a promising
+      learning-based approach to visual relocalization. After mere minutes of
+      scene-specific training, SCR models estimate camera poses of query images with high
+      accuracy. Still, SCR methods fall short of the generalization capabilities of more
+      classical feature-matching approaches. When imaging conditions of query images, such
+      as lighting or viewpoint, are too different from the training views, SCR models
+      fail. Failing to generalize is an inherent limitation of previous SCR frameworks,
+      since their training objective is to encode the training views in the weights of the
+      coordinate regressor itself. The regressor essentially overfits to the training
+      views, by design. We propose to separate the coordinate regressor and the map
+      representation into a generic transformer and a scene-specific map code. This
+      separation allows us to pre-train the transformer on tens of thousands of scenes.
+      More importantly, it allows us to train the transformer to generalize from mapping
+      images to unseen query images during pre-training. We demonstrate on multiple
+      challenging relocalization datasets that our method, ACE-G, leads to significantly
+      increased robustness while keeping the computational footprint attractive.
+    </p>
 
-      <h3>5-Minute Presentation</h3>
-      <hr />
-      <div class="row" style="text-align: center">
-        <video controls>
-          <source src="static/presentation.mp4" type="video/mp4" />
-        </video>
-      </div>
+    <h3>5-Minute Presentation</h3>
+    <hr />
+    <div class="row" style="text-align: center">
+      <video controls>
+        <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/presentation.mp4" type="video/mp4" />
+      </video>
+    </div>
 
-      <h3>Scene-Agnostic Coordinate Regressor</h3>
-      <hr />
-      <p>
-        Most scene coordinate regressors are light-weight networks trained fully per
-        scene. These networks map patch features to their corresponding 3D coordinate.
-        Instead, we split the <span style="">scene-specific regressor</span> into a set of
-        <span>scene-specific map codes</span> and a
-        <span>scene-agnostic coordinate regressor</span>. The scene-specific part is still
-        found through backpropagation-based optimization, but the regressor can be
-        pre-trained specifically for improving generalization.
-      </p>
-      <a class="row" href="static/architecture.svg">
-        <img
-          id="architecture"
-          src="static/architecture.svg"
-          alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
-        />
-      </a>
+    <h3>Scene-Agnostic Coordinate Regressor</h3>
+    <hr />
+    <p>
+      Most scene coordinate regressors are light-weight networks trained fully per scene.
+      These networks map patch features to their corresponding 3D coordinate. Instead, we
+      split the <span style="">scene-specific regressor</span> into a set of
+      <span>scene-specific map codes</span> and a
+      <span>scene-agnostic coordinate regressor</span>. The scene-specific part is still
+      found through backpropagation-based optimization, but the regressor can be
+      pre-trained specifically for improving generalization.
+    </p>
+    <a class="row" href="static/architecture.svg">
+      <img
+        id="architecture"
+        src="static/architecture.svg"
+        alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
+      />
+    </a>
 
-      <!-- <p> -->
-      <!--   We use a light-weight, cross-attention-only transformer as the scene coordinate -->
-      <!--   regressor. -->
-      <!-- </p> -->
+    <!-- <p> -->
+    <!--   We use a light-weight, cross-attention-only transformer as the scene coordinate -->
+    <!--   regressor. -->
+    <!-- </p> -->
 
-      <h3>Query Pre-Training for Improved Generalization</h3>
-      <hr />
-      <p>
-        We pre-train the scene-agnostic coordinate regressor by mimicking its later use
-        case: first, find the map codes given a set of mapping images; then, estimate the
-        scene coordinates for query images <emph>different</emph> from the mapping images.
-        These query images can contain novel viewpoints or other scene changes such as
-        lighting and object placement.
-      </p>
-      <p>
-        We implement this idea by alternating between mapping and query pre-training
-        iterations across hundreds of scenes in parallel (three shown in the illustration
-        below). During mapping iterations, the map codes and the regressor are optimized
-        jointly. During query iterations, only the regressor is optimized. This latter
-        part explicitly aims to force the network to generalize from the mapping data
-        (that was moved into the map codes) to query data.
-      </p>
-      <a class="row" href="static/pre-training.svg">
-        <img
-          src="static/pre-training.svg"
-          alt="Pre-training architecture split into mapping pre-training and quer-pretraining."
-        />
-      </a>
+    <h3>Query Pre-Training for Improved Generalization</h3>
+    <hr />
+    <p>
+      We pre-train the scene-agnostic coordinate regressor by mimicking its later use
+      case: first, find the map codes given a set of mapping images; then, estimate the
+      scene coordinates for query images <emph>different</emph> from the mapping images.
+      These query images can contain novel viewpoints or other scene changes such as
+      lighting and object placement.
+    </p>
+    <p>
+      We implement this idea by alternating between mapping and query iterations across
+      hundreds of scenes in parallel (three shown in the illustration below). During
+      mapping iterations, the map codes and the regressor are optimized jointly. During
+      query iterations, only the regressor is optimized. This latter part explicitly aims
+      to force the network to generalize from the mapping data (that was moved into the
+      map codes) to query data.
+    </p>
+    <a class="row" href="static/pre-training.svg">
+      <img
+        src="static/pre-training.svg"
+        alt="Pre-training architecture split into mapping pre-training and quer-pretraining."
+      />
+    </a>
 
-      <h3>Mapping</h3>
-      <hr />
-      <p>
-        Once the scene-agnostic regressor is pre-trained, we can find the map codes for
-        new scenes through optimization. Starting from a randomly initialized map codes,
-        we optimize the negative log-likelihood of the reprojection error after projecting
-        the coordinates to the image plane. While we currently pre-train with 3D
-        supervision, our method does not require 3D information at mapping time for new
-        scenes.
-      </p>
-      <a class="row" href="static/mapping.svg">
-        <img
-          id="mapping"
-          src="static/mapping.svg"
-          alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
-        />
-      </a>
+    <h3>Mapping</h3>
+    <hr />
+    <p>
+      Once the scene-agnostic regressor is pre-trained, we can find the map codes for new
+      scenes through optimization. Starting from a randomly initialized map codes, we
+      optimize the negative log-likelihood of the reprojection error after projecting the
+      coordinates to the image plane. While we currently pre-train with 3D supervision,
+      our method does not require 3D information at mapping time for new scenes.
+    </p>
+    <a class="row" href="static/mapping.svg">
+      <img
+        id="mapping"
+        src="static/mapping.svg"
+        alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
+      />
+    </a>
 
-      <h3>Relocalization</h3>
-      <hr />
-      <p>
-        Once the map codes for a new scene are optimized, we can relocalize query images
-        within the scene. We use the estimated uncertainty to prefilter the estimated
-        2D-3D correspondences before finding the pose using a robust PnP solver.
-      </p>
-      <a class="row" href="static/relocalization.svg">
-        <img
-          id="relocalization"
-          src="static/relocalization.svg"
-          alt="To relocalize an image, we first estimate the 2D-3D correspondences, prefilter them based on the estimated uncertainty, and use a PnP solver to find its pose."
-        />
-      </a>
-      
-      <h3>BibTeX</h3>
-      <hr />
-      <p>
-        If you find this work useful for your research, please consider citing our paper:
-      </p>
-      <div>
-        <pre>
+    <h3>Relocalization</h3>
+    <hr />
+    <p>
+      Once the map codes for a new scene are optimized, we can relocalize query images
+      within the scene. We use the estimated uncertainty to prefilter the estimated 2D-3D
+      correspondences before finding the pose using a robust PnP solver.
+    </p>
+    <a class="row" href="static/relocalization.svg">
+      <img
+        id="relocalization"
+        src="static/relocalization.svg"
+        alt="To relocalize an image, we first estimate the 2D-3D correspondences, prefilter them based on the estimated uncertainty, and use a PnP solver to find its pose."
+      />
+    </a>
+
+    <h3>BibTeX</h3>
+    <hr />
+    <p>
+      If you find this work useful for your research, please consider citing our paper:
+    </p>
+    <div>
+      <pre>
 @inproceedings{bruns2025aceg,
   title={{ACE-G}: Improving Generalization of Scene Coordinate Regression Through Query Pre-Training},
   author={Bruns, Leonard and Barroso-Laguna, Axel and Cavallari, Tommaso and Monszpart, {\'{A}}ron and Munukutla, Sowmya and Prisacariu, Victor and Brachmann, Eric},
   booktitle={arXiv preprint arXiv:xxxx.xxxxx},
   year={2025}
 }</pre
-        >
-      </div>
-
-      <pre></pre>
-
-      <script>
-        document.getElementById("overviewVideo").playbackRate = 0.8;
-        document.getElementById("cambridge_shop").playbackRate = 1.2;
-        document.getElementById("KingsCollege").playbackRate = 1.2;
-        document.getElementById("Indoor6Scene2_light").playbackRate = 0.5;
-        document.getElementById("Indoor6Scene2_dark").playbackRate = 0.5;
-        document.getElementById("OldHospital").playbackRate = 1.1;
-        document.getElementById("StMaryChurch").playbackRate = 0.9;
-      </script>
+      >
     </div>
+
+    <pre></pre>
+
+    <script>
+      document.getElementById("overviewVideo").playbackRate = 0.8;
+      document.getElementById("cambridge_shop").playbackRate = 1.2;
+      document.getElementById("KingsCollege").playbackRate = 1.2;
+      document.getElementById("Indoor6Scene2_light").playbackRate = 0.5;
+      document.getElementById("Indoor6Scene2_dark").playbackRate = 0.5;
+      document.getElementById("OldHospital").playbackRate = 1.1;
+      document.getElementById("StMaryChurch").playbackRate = 0.9;
+    </script>
   </body>
 </html>
