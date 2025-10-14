@@ -154,15 +154,15 @@
     </div>
 
     <div class="row" style="text-align: center">
-      <video loop muted autoplay>
-        <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/teaser.mp4" type="video/mp4" />
+      <video loop muted autoplay crossorigin="anonymous" oncanplay="setVideoBgColorDelayed(this,[8,31,60])">
+        <source src="static/teaser.mp4" type="video/mp4"/>
       </video>
     </div>
 
     <h3 id="abstract_h3">Abstract</h3>
     <hr />
     <p>
-      Scene coordinate regression (SCR) has established itself as a promising
+      Scene coordjnate regression (SCR) has established itself as a promising
       learning-based approach to visual relocalization. After mere minutes of
       scene-specific training, SCR models estimate camera poses of query images with high
       accuracy. Still, SCR methods fall short of the generalization capabilities of more
@@ -193,19 +193,19 @@
     <p>
       Most scene coordinate regressors are light-weight networks trained fully per scene.
       These networks map patch features to their corresponding 3D coordinate. Instead, we
-      split the <span style="">scene-specific regressor</span> into a set of
+      split the <span>scene-specific regressor</span> into a set of
       <span>scene-specific map codes</span> and a
       <span>scene-agnostic coordinate regressor</span>. The scene-specific part is still
       found through backpropagation-based optimization, but the regressor can be
       pre-trained specifically for improving generalization.
     </p>
-    <a class="row" href="static/architecture.svg">
+    <div class="row">
       <img
         id="architecture"
         src="static/architecture.svg"
         alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
       />
-    </a>
+    </div>
 
     <!-- <p> -->
     <!--   We use a light-weight, cross-attention-only transformer as the scene coordinate -->
@@ -229,12 +229,10 @@
       to force the network to generalize from the mapping data (that was moved into the
       map codes) to query data.
     </p>
-    <a class="row" href="static/pre-training.svg">
       <img
         src="static/pre-training.svg"
         alt="Pre-training architecture split into mapping pre-training and quer-pretraining."
       />
-    </a>
 
     <h3>Mapping</h3>
     <hr />
@@ -245,13 +243,13 @@
       coordinates to the image plane. While we currently pre-train with 3D supervision,
       our method does not require 3D information at mapping time for new scenes.
     </p>
-    <a class="row" href="static/mapping.svg">
+    <div class="row">
       <img
         id="mapping"
         src="static/mapping.svg"
         alt="Split scene-specific regressor up into scene-agnostic regressor and scene-specific map codes."
       />
-    </a>
+    </div>
 
     <h3>Relocalization</h3>
     <hr />
@@ -260,21 +258,23 @@
       within the scene. We use the estimated uncertainty to prefilter the estimated 2D-3D
       correspondences before finding the pose using a robust PnP solver.
     </p>
-    <a class="row" href="static/relocalization.svg">
+    <div class="row">
       <img
         id="relocalization"
         src="static/relocalization.svg"
         alt="To relocalize an image, we first estimate the 2D-3D correspondences, prefilter them based on the estimated uncertainty, and use a PnP solver to find its pose."
       />
-    </a>
+    </div>
 
-    <!-- Video Carousel -->
+    <p>
+      Below we visualize the estimated scene coordinates of ACE-G for different scenes. In addition, we show the <span style="color:rgb(122,188,204)">ground-truth</span> camera pose, and the estimates of <span style="color:#e07467">ACE-G</span> and <span style="color:rgb(152,175,117)">ACE</span>.
+    </p>
     <div id="sceneCarousel" class="carousel slide mb-4" data-bs-ride="false">
       <div class="carousel-inner">
         <!-- Indoor-6 Videos -->
         <div class="carousel-item active">
           <div class="ratio ratio-16x9">
-            <video class="d-block w-100 brightness-fix" loop muted autoplay>
+            <video class="d-block w-100" loop muted autoplay>
               <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/example_scenes/indoor6_scene1.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -285,7 +285,7 @@
         </div>
         <div class="carousel-item">
           <div class="ratio ratio-16x9">
-            <video class="d-block w-100 brightness-fix" loop muted>
+            <video class="d-block w-100" loop muted>
               <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/example_scenes/indoor6_scene3.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -296,7 +296,7 @@
         </div>
         <div class="carousel-item">
           <div class="ratio ratio-16x9">
-            <video class="d-block w-100 brightness-fix" loop muted>
+            <video class="d-block w-100" loop muted>
               <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/example_scenes/indoor6_scene5.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -308,7 +308,7 @@
         <!-- RIO10 Videos -->
         <div class="carousel-item">
           <div class="ratio ratio-16x9">
-            <video class="d-block w-100 brightness-fix" loop muted>
+            <video class="d-block w-100" loop muted>
               <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/example_scenes/rio10_scene1.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -319,7 +319,7 @@
         </div>
         <div class="carousel-item">
           <div class="ratio ratio-16x9">
-            <video class="d-block w-100 brightness-fix" loop muted>
+            <video class="d-block w-100" loop muted>
               <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/example_scenes/rio10_scene5.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -330,7 +330,7 @@
         </div>
         <div class="carousel-item">
           <div class="ratio ratio-16x9">
-            <video class="d-block w-100 brightness-fix" loop muted>
+            <video class="d-block w-100" loop muted>
               <source src="https://storage.googleapis.com/niantic-lon-static/research/ace-g/example_scenes/rio10_scene6.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -390,6 +390,31 @@
     <pre></pre>
 
     <script>
+      function drawingLoop() {
+          requestId = window.requestAnimationFrame(drawingLoop)
+          ctx.drawImage(vid, 0, 0, vidWidth, vidHeight, 0, 0, canvas.width, canvas.height);
+      }
+
+      function setVideoBgColor(vid) {
+          // draw first four pixel of video to a canvas
+          // then get pixel color from that canvas
+          var canvas = document.createElement("canvas");
+          canvas.width = 100;
+          canvas.height = 100;
+
+          var ctx = canvas.getContext('2d');
+
+          ctx.drawImage(vid, 0, 0, 100, 100);
+          var p = ctx.getImageData(0, 0, 100, 100).data;
+          //dont take the first but fourth pixel [r g b a]
+          document.body.style.backgroundColor = "rgb(" + p[0] + "," + p[1] + "," + p[2] + ")";
+      }
+
+        
+      function setVideoBgColorDelayed(vid) {
+          setInterval(setVideoBgColor, 100, vid);
+      }
+
       // Scene carousel control - wrapped in IIFE to avoid conflicts
       (function() {
         $(document).ready(function() {
