@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NaviNote</title>
+  <meta name="description"
+    content="NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!-- Facebook preview -->
+  <meta property="og:image" content="resources/social_card.png">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="..." />
+  <meta property="og:title"
+    content="NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People" />
+  <meta property="og:description"
+    content="NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People, CHI 2026" />
+
+  <!-- Twitter preview -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title"
+    content="NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People" />
+  <meta name="twitter:description"
+    content="NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People, CHI 2026" />
+  <meta name="twitter:image" content="resources/social_card.png">
+
+  <!-- Google Scholar Meta Tags -->
+  <meta name="citation_title" content="NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People">
+  <meta name="citation_author" content="Ruijia Chen">
+  <meta name="citation_author" content="Yuheng Wu">
+  <meta name="citation_author" content="Charlie Houseago">
+  <meta name="citation_author" content="Filipe Gaspar">
+  <meta name="citation_author" content="Filippo Aleotti">
+  <meta name="citation_author" content="Dorian Gálvez-López">
+  <meta name="citation_author" content="Oliver Johnston">
+  <meta name="citation_author" content="Diego Mazala">
+  <meta name="citation_author" content="Guillermo Garcia-Hernando">
+  <meta name="citation_author" content="Maryam Bandukda">
+  <meta name="citation_author" content="Gabriel Brostow">
+  <meta name="citation_author" content="Jessica Van Brummelen">
+  <meta name="citation_publication_date" content="2026-04">
+  <meta name="citation_conference_title"
+    content="Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems">
+  <meta name="citation_conference" content="CHI 2026">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2603.08837">
+
+  <!-- Style -->
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/746ee6bfa4.js" crossorigin="anonymous"></script>
+
+  <link rel="icon" type="image/png" href="resources/favicon.png">
+</head>
+<body>
+  <div class="container" style="text-align:center; padding:2rem 15px">
+    <div class="row">
+      <h1 style="margin-bottom:0.1rem; font-variant: small-caps;">NaviNote</h1>
+      <h3 style="margin-top:0.1rem;margin-bottom:0.5rem;">
+        Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People</h3>
+      <h4 style="font-size:1.4em;">ACM CHI 2026 🏆 Honorable Mention Award</h4>
+    </div>
+    <div class="row" style="margin-top:1rem;">
+      <h4 style="font-size:1.1em;">
+        <a href="https://orcid.org/0000-0002-1655-6228" title="Link to Ruijia Chen's ORCID page" aria-label="Link to Ruijia Chen's ORCID page">Ruijia Chen<sup>1*</sup></a> &emsp;
+        <a href="https://orcid.org/0009-0005-1828-400X" title="Link to Yuheng Wu's ORCID page" aria-label="Link to Yuheng Wu's ORCID page">Yuheng Wu<sup>1*</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0001-8700-5397" title="Link to Charlie Houseago's ORCID page" aria-label="Link to Charlie Houseago's ORCID page">Charlie Houseago<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0001-5363-4961" title="Link to Filipe Gaspar's ORCID page" aria-label="Link to Filipe Gaspar's ORCID page">Filipe Gaspar<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0002-8911-3241" title="Link to Filippo Aleotti's ORCID page" aria-label="Link to Filippo Aleotti's ORCID page">Filippo Aleotti<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0009-0009-0463-2279" title="Link to Dorian Gálvez-López's ORCID page" aria-label="Link to Dorian Gálvez-López's ORCID page">Dorian Gálvez-López<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0009-0002-3423-3526" title="Link to Oliver Johnston's ORCID page" aria-label="Link to Oliver Johnston's ORCID page">Oliver Johnston<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0002-7481-802X" title="Link to Diego Mazala's ORCID page" aria-label="Link to Diego Mazala's ORCID page">Diego Mazala<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0003-3215-7857" title="Link to Guillermo Garcia-Hernando's ORCID page" aria-label="Link to Guillermo Garcia-Hernando's ORCID page">Guillermo Garcia-Hernando<sup>2</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0002-2367-6471" title="Link to Maryam Bandukda's ORCID page" aria-label="Link to Maryam Bandukda's ORCID page">Maryam Bandukda<sup>3</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0001-8472-3828" title="Link to Gabriel Brostow's ORCID page" aria-label="Link to Gabriel Brostow's ORCID page">Gabriel Brostow<sup>3</sup></a> &emsp;
+        <a href="https://orcid.org/0000-0002-4831-6296" title="Link to Jessica Van Brummelen's ORCID page" aria-label="Link to Jessica Van Brummelen's ORCID page">Jessica Van Brummelen<sup>2</sup></a>
+      </h4>
+      <div><sup>1</sup>University of Wisconsin-Madison &nbsp;&nbsp; <sup>2</sup>Niantic Spatial, Inc. &nbsp;&nbsp; <sup>3</sup>University College London</div>
+      <div style="font-size:0.9em; margin-top:0.5em;"><sup>*</sup>Equal contribution</div>
+    </div>
+  </div>
+
+  <div class="container" style="max-width: 1000px">
+    <div class="row" style="text-align: center; padding:1rem">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-2">
+        <a href="resources/NaviNote_CHI26.pdf" title="Accessible PDF" aria-label="Accessible PDF">
+          <i class="fa-solid fa-file-pdf fa-4x"></i></a>
+      </div>
+
+      <div class="col-xs-2">
+        <a href="https://arxiv.org/abs/2603.08837" title="Paper" aria-label="Paper">
+          <i class="fas fa-book fa-4x"></i></a>
+      </div>
+
+      <div class="col-xs-2">
+        <a href="https://youtu.be/M0kIoho02hM" title="Video Presentation" aria-label="Video Presentation">
+          <i class="fa-brands fa-youtube fa-4x"></i></a>
+      </div>
+
+      <div class="col-xs-4"></div>
+
+    </div>
+  </div>
+
+
+  <div class="container" style="text-align:center; padding:1rem">
+    <br>
+    <img src="resources/teaser.png"
+      alt="A five-stage pipeline is shown with 5 panels. Each panel shows a user with a vest and speech bubbles communicating between NaviNote and the user. In (1), the user asks, &quot;Where am I?&quot; The system responds: &quot;You're at the park entrance. There's a statue nearby...&quot; The user follows up: &quot;Please, guide me to the statue!&quot;; In (2) NaviNote provides navigation instructions, &quot;Walk straight for 15 meters...&quot;, &quot;... podium ahead at 10 o'clock&quot;; In (3) the user listens to a nearby spatial annotation, &quot;Be careful, there are 16 steps ahead&quot;; In (4) the user asks: &quot;What did others say about the statue?&quot; The system responds: &quot;One annotation notes the statue is of Cicero, a famed orator, lawyer and politician.&quot;; In (5) the user creates their own spatial annotation, &quot;There's a nice café with accessible restrooms here.&quot; During the interaction, the user wears a vest that holds the smartphone with camera facing forward, and localizes their precise positions using Visual Positioning System (VPS) in a pre-scanned area on the smartphone."
+      class="text-center" style="width: 100%; max-width: 1200px">
+  </div>
+
+
+  <div class="container" style="max-width:1000px;">
+    <h3>Abstract</h3><hr/>
+    <p>
+      GPS and smartphones enable users to place location-based annotations, capturing rich environmental context. Previous research demonstrates that blind and low vision (BLV) people can use annotations to explore unfamiliar areas. However, current commercial systems allowing BLV users to create annotations have never been evaluated, and current GPS-based systems can deviate several meters. Motivated by high-accuracy visual positioning technology, we first conducted a formative study with 24 BLV participants to envision a more accurate and inclusive annotation system. Surprisingly, many participants viewed the high-accuracy technology not just as an annotation system but also as a tool for precise last-few-meters navigation. Guided by participant feedback, we developed NaviNote, which combines vision-based high-precision localization with an agentic architecture to enable voice-based annotation authoring and navigation. Evaluating NaviNote with 18 BLV participants showed that it significantly improved navigation performance and supported users in understanding and annotating their surroundings. Based on these findings, we discuss design considerations for future accessible annotation authoring systems.
+    </p>
+    <br>
+
+    <h3>Video</h3><hr/>
+    <div style="width: 100%; max-width: 1200px">
+      <iframe style="width: 100%; height: auto; aspect-ratio: 16 / 9; display: block;" src="https://www.youtube.com/embed/M0kIoho02hM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <br>
+
+    <!-- MOTIVATION SECTION (commented out until content is ready)
+    <h3>Motivation</h3><hr/>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <br>
+    -->
+
+    <h3>Interactions with NaviNote</h3><hr/>
+    <p>
+      NaviNote enables blind and low vision (BLV) users to explore their surroundings via a five-stage pipeline after localizing their precise positions using Visual Positioning System (VPS) in a pre-scanned area on a smartphone: 
+      (1) User asks about the area using natural language; 
+      (2) User navigates to a specific location within the area by following the turn-by-turn instructions NaviNote provides; 
+      (3) User listens to nearby spatial annotations created by other BLV users; 
+      (4) User asks follow-up questions on spatial annotations and from other information sources; 
+      (5) User creates their own spatial annotations.
+      During the interaction, the user wears a vest that holds the smartphone with camera facing forward to localize their position and orientation.
+      <!-- TODO: replace with description of example annotations/creations -->
+    </p>
+    <br>
+    <!-- TODO: replace with actual figure -->
+    <img src="resources/navinote-interface.png"
+      alt="Five panels showing NaviNote's visual interface. The interface has a large panel with text either showing what the user asked (e.g., \" Hi, where am I?\" (A) and \" Help me add a note saying, `Hi Emma, if you know who this is, I will meet you at a statue.'  \" (C) ), the system's response (e.g., \" You \' re surrounded by various objects in [a local public square]. Nearby are table tennis tables about 19 meters away, benches within 5 meters, ...\" (B) ), or annotations (e.g., \" Straight ahead: Here is a 4-meter-long ramp. Watch out for a small hole near the bottom to avoid tripping!\" (E) ). The one exception is panel (D), which shows the navigation interface: A bright green line pointing towards a bright pink star, overlaid on the real-world camera view. The pink star sits at the location of a statue."
+      class="text-center" style="width: 100%; max-width: 1200px">
+    <figcaption style="margin-top: 1em; text-align: left;">
+      <!-- TODO: replace with actual figure caption -->
+      The figure shows NaviNote's high-contrast visual interface. 
+      Note that the interface is voice-first, and this visual interface serves to address our Design Guideline 6 (<b><i>Offer Multi-modal Feedback</i></b>), which we developed from a formative study with 24 BLV users.
+      In (A), the user has asked where they are, and is waiting for a response from the system. 
+       In (B), the system responds. 
+       In (C), the user asks the system to place an annotation. 
+       In (D), the system shows a path to the statue during navigation. 
+       In (E), a safety annotation automatically plays. 
+      </figcaption>
+    <br>
+    <!-- TODO: replace with actual figure -->
+    <img src="resources/AudioCompass.png"
+      alt="The image depicts a user wearing a vest and earphones with a phone attached in front of her. During navigation, there is a spatial audio signal (\"beep\") in the direction users should be moving. For example, when guiding a user to a statue, a continuous high-volume beep (\"BEEP\") indicates correct orientation, whereas a lower volume indicates an incorrect orientation. When the user faces the statue correctly, the system also periodically provides verbal confirmation, saying \"Correct direction!\""
+      class="text-center" style="width: 100%; max-width: 1200px">
+    <figcaption style="margin-top: 1em; text-align: left;">
+      <!-- TODO: replace with actual figure caption -->
+       NaviNote delivers navigation instructions in two ways: turn-by-turn instructions and audio compass. 
+       Turn-by-turn instructions are announced in a concise format (e.g., "2 o'clock, 5 meters") and played in spatial audio to provide directional cues. 
+       The audio compass is a beeping signal that continuously plays at high volume when the user is facing the correct direction and at low volume when not.
+       It aims to provide users with immediate and constant feedback on their direction, following our design guideline 1, <b><i>Support Navigation with Constant Confirmation</i></b>. 
+    </figcaption>
+    <br>
+
+    <h3>System Overview</h3><hr/>
+    <p>
+      Based on the interaction pipeline and formative study, we designed NaviNote with four major components: Scanning and Localization, Query Answering, Navigation, and Annotation Accessing and Authoring.
+      NaviNote contains a phone-based frontend for user interaction and a Python server backend for request processing.
+      <!-- TODO: replace with system overview description -->
+    </p>
+    <p>
+      The <b>Scanning and Localization</b> component uses <a href="https://www.nianticspatial.com/docs/nsdk/features/lightship_vps/">Niantic Spatial's Visual Positioning System (VPS)</a> to build a 3D map of each POI from RGB-D and pose data, and continuously track the user's position to support real-time spatial understanding.    </p>
+    <p>
+      The <b>Query Answering</b> component is powered by an orchestrator-based Multimodal Large Language Model (MLLM) backend (using OpenAI <a href="https://developers.openai.com/api/docs/models/gpt-4o">GPT-4o</a> and <a href="https://developers.openai.com/api/docs/models/gpt-4o-mini">GPT-4o mini</a>), where a central controller parses user queries, dispatches them to six task-specific agents with access to multimodal inputs (e.g., camera frames, VPS pose, data from the internet, and the annotation database), and aggregates their outputs into concise spoken responses.
+    <p>
+      The <b>Navigation</b> component computes a walkable path using <a href="https://www.nianticspatial.com/docs/nsdk/features/meshing/?platform=unity#mesh-filtering">Niantic Spatial's semantic mesh</a>, uses A-star algorithm to plan the next step, and delivers real-time guidance through turn-by-turn instructions in spatial audio, an audio compass, and optional visual cues.
+    </p>
+    <p>
+      The <b>Annotation Accessing and Authoring</b> component enables location-triggered access to spatial annotations with layered mechanisms (automatic playback for critical categories and on-demand access for others), and supports natural language authoring, editing, and removal of annotations anchored to objects or user locations.    </p>
+    <br>
+    <!-- TODO: replace with actual figure -->
+    <img src="resources/navinote_dataflow_new.png"
+      alt="A diagram that starts with \" User Input\"  and branches in three directions. 
+      The first branch shows the Question and Answering pipeline, beginning with \" Where am I?\" , which is provided to a phone (frontend) and converted to a text query. 
+      This text query with VPS location is sent to a backend \" Query Processor\" , which develops a text response. The response is sent to the frontend and converted to speech, \" You are at XYZ park.\"  The second branch shows the Navigation to Objects and Annotations during the navigation pipeline. 
+      The user states, \" Guide me to the statue,\"  which goes through the same process as in the Question and Answering pipeline, but instead of just providing a text response, the query triggers a navigation cycle. 
+      This cycle runs on the frontend and includes generating a semantic walkable mesh, \colorchange{using A-star wayfinding algorithm to generate instruction}, and providing user feedback, \eg by saying \" Correct direction.\"  Finally, the third branch shows the Annotation Access pipeline. 
+      The backend retrieves the VPS location and nearby annotations, which then either automatically play or are prompted. The \" automatically play\"  branch says, \" Watch out, stairs ahead,\"  and the \" prompt\"  branch says, \" One attraction note nearby.\" "
+      class="text-center" style="width: 100%; max-width: 1200px">
+    <figcaption style="margin-top: 1em; text-align: left;">
+      <!-- TODO: replace with actual figure caption -->
+      The figure shows the interaction flow of NaviNote.
+      <b>Top</b>: Question answering. The user asks a question to the phone, which converts speech to text and sends the query with VPS location to the backend. The backend returns a text response, which the frontend speaks aloud via text-to-speech. 
+      
+      <b>Middle</b>: Navigation to objects and annotations of interest. The user requests guidance to an object or annotation. The query and location are sent to the backend, which triggers navigation on the frontend. 
+      As the user moves, the frontend generates turn-by-turn instructions with an audio compass with A-star wayfinding algorithm over the semantic walkable mesh. 
+      
+      <b>Bottom</b>: Annotation access. The frontend continuously retrieves VPS location and nearby annotations, playing them either automatically or by prompt.    </figcaption>
+    <br>
+    <!-- TODO: replace with actual figure -->
+    <!-- <img src="https://placehold.co/1200x500?text=Figure+4"
+      alt="TODO: figure 4 alt text"
+      class="text-center" style="width: 100%; max-width: 1200px"> -->
+    <!-- <figcaption style="margin-top: 1em; text-align: left;">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </figcaption>
+    <br> -->
+
+    <h3>User Study & Evaluation</h3><hr/>
+    <p>
+      We conducted two user studies (n_1=24, n_2=18).
+    </p>
+    <p>
+      To inform the design of NaviNote, we first conducted a formative study with 24 BLV participants, focusing on whether they would value highly-localized audio annotations, what they might use them for, and where they might place them. 
+      <!-- The study included four stages: scenario-based brainstorming, tactile-map prototyping, Wizard-of-Oz authoring, and reflection. -->
+      The study identified BLV participants' desired types of annotations (<i>Safety</i>, <i>Accessibility</i>, <i>Layout</i>, <i>Amenity</i>, <i>Attraction</i>, and <i>Experience</i>), and revealed how precise navigation would be a prerequisite for annotation authoring.
+    </p>
+    <p>
+      To evaluate the effectiveness of NaviNote in assisting BLV people in exploring outdoor environments, we then conducted a study with four pilot participants and 18 study participants in a public local square.
+      The study had two parts. 
+      First, we compared navigation performance between NaviNote and a baseline application that provides on-demand concise image descriptions. Participants navigated two comparable 30-meter-long routes with the two systems.
+      <!-- <a href="https://taptapseeapp.com/">TapTapSee</a>, a widely used application that provides on-demand concise image descriptions. Since no existing tool addresses last-few-meters navigation for BLV users, we chose TapTapSee as it can describe objects crucial for navigation. Participants navigated two comparable 30-meter-long routes with the two systems. -->
+      Then, participants freely explored the square using NaviNote, listened to pre-set annotations, and created new ones in situ.
+      We found that NaviNote significantly improved BLV users' navigation performance, helped them better understand their surroundings, and enabled them to actively annotate the environment.
+      For more details, please see our paper.
+
+    </p>
+    <br>
+    <!-- TODO: replace with actual figure -->
+    <img src="resources/formative_prototyping_picture.jpg"
+      alt="The first image shows five people sitting at a table with a tactile map. One participant is touching the map, likely identifying objects. Others are holding modeling clay. The second image shows five large physical buttons arranged around a tactile map. Various bits of modeling clay and Lego pieces are arranged on the map."
+      class="text-center" style="width: 100%; max-width: 1200px">
+    <figcaption style="margin-top: 1em; text-align: left;">
+      <!-- TODO: replace with actual figure caption -->
+    The left figure shows one of the formative study small groups prototyping where they would place annotations on a 3D-printed map. The right figure shows an example of a final prototype, with various audio buttons-which contain annotation recordings-arranged around a tactile map. 
+    The orange modeling clay indicates annotation locations.    </figcaption>
+    <br>
+
+    
+    <img src="resources/layout.png"
+      alt="(A) Map of the fenced square for the evaluation study. The square consists of various objects: three large flower beds in the center, two table tennis tables, two set of stairs, 20 benches arranged along the edges, six stone podiums near the flower beds, 26 trash bins by the benches, three historical notice boards at west, east, and southern side of the square, a ramp at the southern end, and a statue at the center of the central flower bed.
+    (B) An illustration of the two routes for the navigation task. Route 1 to Emma starts from the ramp, curves around the left side of the central flower bed, and ends near the top left of the square at a stone podium. Route 2 to Ben also begins at the ramp, goes upward along the right side of the central flower bed, and ends near the top right of the square at a trash bin. The two routes are of similar length."
+      class="text-center" style="width: 100%; max-width: 1200px">
+    <figcaption style="margin-top: 1em; text-align: left;">
+      <!-- TODO: replace with actual figure caption -->
+      The figure shows (A) The layout of the local public square for the evaluation study (gates omitted). There are 20 benches, 26 trash bins, two set of stairs, one ramp, six stone podiums, three flower beds, two table tennis tables, three historical notice boards, and one statue; 
+      and (B) The two routes for the navigation task. Participants start from the ramp and navigate to the furthest podium on the left to meet their virtual friend "Emma" (green route), and to a trash bin on the right back corner of the square to meet their virtual friend "Ben" (red route). 
+   </figcaption>
+    <br>
+
+    <h3>Resources</h3><hr/>
+    <div class="row text-center"> <!-- TODO: replace thumbnails & links below -->
+      <div class="col-xs-2 col-lg-2"></div>
+      <div class="col-xs-4 col-lg-4"><h4>Paper</h4>
+        <a href="resources/NaviNote_CHI26.pdf"><img src="resources/NaviNote_CHI26.pdf.png" alt="Download accessible paper PDF" title="Download accessible paper PDF" style="max-width:70%; border:0.15em solid; border-radius:0.5em;"></a>
+      </div>
+      <div class="col-xs-4 col-lg-4"><h4>Supplemental</h4>
+        <a href="resources/NaviNote_CHI26_Supplemental.pdf"><img src="resources/NaviNote_CHI26_Supplemental.pdf.png" alt="Download accessible supplemental PDF" title="Download accessible supplemental PDF" style="max-width:70%; border:0.15em solid; border-radius:0.5em;"></a>
+      </div>
+      <div class="col-xs-2 col-lg-2"></div>
+    </div>
+    <br>
+    <h4 style="padding-top:0.5em">BibTeX</h4>
+    <p>If you find this work useful for your research, please cite:</p>
+    <div class="card" role="region" aria-label="BibTeX citation">
+      <div class="card-block">
+        <pre class="card-text clickselect">
+@inproceedings{chen2026navinote,
+  author = {Chen, Ruijia and Wu, Yuheng and Houseago, Charlie and Gaspar, Filipe and Aleotti, Filippo and Gálvez-López, Dorian and Johnston, Oliver and Mazala, Diego and Garcia-Hernando, Guillermo and Bandukda, Maryam and Brostow, Gabriel and Van Brummelen, Jessica},
+  title = {NaviNote: Enabling In-situ Spatial Annotation Authoring to Support Exploration and Navigation for Blind and Low Vision People},
+  year = {2026},
+  isbn = {979-8-4007-2278-3},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3772318.3790589},
+  doi = {10.1145/3772318.3790589},
+  booktitle = {Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems},
+  location = {Barcelona, Spain},
+  series = {CHI '26},
+}</pre>
+      </div>
+    </div>
+    <br>
+
+    <h3>Acknowledgements</h3><hr/>
+    <p>
+      We thank Bryan Tan, Sara Gomes Vicente, Michael Firman, Jakub Powierza, Chris Shaw, Michael Miller, Ben Benfold, Alyssa Coley, Effie Shum, and Belinda Manfo from Niantic Spatial, Inc. for their assistance in the successful execution of both studies and in system deployment. We thank <a href="https://beyondsightloss.org.uk/">Beyond Sightloss</a> for facilitating participant recruitment in both studies.
+    </p>
+  </div>
+
+  <div class="container" style="padding-top:3rem; padding-bottom:3rem">
+    <p style="text-align:center">
+      &#169; This webpage was inspired by this
+      <a href="https://nianticlabs.github.io/simplerecon/">template</a>.
+    </p>
+  </div>
+</body>
+</html>
