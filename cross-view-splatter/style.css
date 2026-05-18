@@ -1,5 +1,5 @@
 .container {
-  width: 75%; 
+  width: 75%;
 }
 
 a {
@@ -7,28 +7,124 @@ a {
 }
 
 .spacer {
-  height: 100px; 
+  height: 100px;
 }
 
+/* Subtle short accent under section headings */
 hr {
-  margin-top: -1.2rem;
-  margin-bottom: 1rem;
+  margin: -0.4rem auto 1.5rem;
   border: 0;
-  border-top: 0.3rem solid #df471c;
+  border-top: 2px solid #df471c;
+  width: 56px;
+  opacity: 0.85;
 }
-  
+
 p {
   text-align: justify;
   font-size: 1.2em;
 }
 
 h3 {
-  padding-top: 3rem;
-  padding-bottom: 1rem;
+  padding-top: 0;
+  padding-bottom: 0.6rem;
+  text-align: center;
 }
 
 h1 {
   padding-top: 3rem;
+}
+
+/* --- Layout primitives ------------------------------------------------- */
+
+/* Pill-style link buttons (Paper / Code / BibTeX) */
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  background: #1f1f1f;
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.link-pill i { font-size: 1.05rem; }
+.link-pill:hover {
+  background: #df471c;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* Sticky in-page navigation */
+.page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid #e8eaee;
+}
+.page-nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  padding: 0.6rem 1rem;
+}
+.page-nav a {
+  color: #444;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  padding: 0.15rem 0.1rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+.page-nav a:hover {
+  color: #df471c;
+  border-bottom-color: #df471c;
+}
+
+/* Anchor-offset so sticky nav doesn't cover targeted headings */
+section[id], div[id^="abstract"], div[id^="method"], div[id^="reconstructions"],
+div[id^="results"], div[id^="scene-comparison"] {
+  scroll-margin-top: 70px;
+}
+
+/* Hero caption (TL;DR under the teaser image) */
+.hero-caption {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  text-align: center !important;
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.5;
+}
+.hero-caption i {
+  color: #df471c;
+  margin-right: 0.35rem;
+}
+
+/* Consistent section rhythm */
+.section-block {
+  margin-top: 4rem;
+}
+.section-block:first-of-type {
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .section-block { margin-top: 2.75rem; }
+  .page-nav-inner { gap: 0.25rem 1.1rem; padding: 0.5rem 0.75rem; }
+  .page-nav a { font-size: 0.85rem; }
+  .link-pill { padding: 0.5rem 1rem; font-size: 0.92rem; }
 }
 
 .method-pill {

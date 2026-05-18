@@ -17,16 +17,169 @@
     <meta name="twitter:title" content="Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images">
     <meta name="twitter:description" content="Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-04KM71BRNB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-04KM71BRNB');
+    </script>
+
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <link href="static/css/twentytwenty.css" rel="stylesheet" type="text/css" />
+    <style>
+        .twentytwenty-container {
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+            border: 1px solid #ececf2;
+            border-radius: 10px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+        .twentytwenty-custom {
+            width: 252px !important;
+            min-width: 252px !important;
+            height: 189px !important;
+            min-height: 189px !important;
+            box-sizing: border-box !important;
+        }
+        .comparison-scroller {
+            display: flex;
+            gap: 1.1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.4rem 0.25rem 1.25rem;
+            margin-top: 0.75rem;
+            scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+        }
+        .comparison-scroller::-webkit-scrollbar {
+            height: 8px;
+        }
+        .comparison-scroller::-webkit-scrollbar-thumb {
+            background: #d6d6dc;
+            border-radius: 999px;
+        }
+        .comparison-scroller::-webkit-scrollbar-thumb:hover {
+            background: #b9b9c2;
+        }
+        .comparison-card {
+            flex: 0 0 auto;
+            width: 280px;
+            background: #fff;
+            border: 1px solid #ececf2;
+            border-radius: 14px;
+            padding: 14px 14px 16px;
+            box-shadow: 0 1px 2px rgba(15, 17, 26, 0.04);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            scroll-snap-align: start;
+            text-align: center;
+        }
+        .comparison-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(15, 17, 26, 0.08);
+            border-color: #d8d9e0;
+        }
+        .comparison-card .scene-name {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #1f1f1f;
+            letter-spacing: 0.02em;
+            margin: 0 0 12px;
+            padding: 2px 0;
+        }
+        .comparison-card p {
+            text-align: center;
+        }
+        /* Style the twentytwenty plugin's built-in alt-text labels as small pill badges */
+        .comparison-card .twentytwenty-label-1,
+        .comparison-card .twentytwenty-label-2,
+        .comparison-card .twentytwenty-label-3,
+        .comparison-card .twentytwenty-label-4 {
+            padding: 3px 8px !important;
+            background: rgba(15, 17, 26, 0.62);
+            color: #fff;
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            text-shadow: none;
+            line-height: 1.2;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            pointer-events: none;
+        }
+        .tldr-content {
+            background: #f8f9fb;
+            border: 1px solid #e2e5e9;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+        .tldr-content p {
+            margin: 0;
+            line-height: 1.45;
+        }
+        .twentytwenty-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .twentytwenty-frame-1,
+        .twentytwenty-frame-2,
+        .twentytwenty-frame-3,
+        .twentytwenty-frame-4 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .twentytwenty-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        @media (max-width: 640px) {
+            .twentytwenty-custom {
+                width: 220px !important;
+                min-width: 220px !important;
+                height: 165px !important;
+                min-height: 165px !important;
+            }
+            .comparison-card {
+                width: 248px;
+                padding: 12px 12px 14px;
+            }
+            .comparison-scroller {
+                gap: 0.85rem;
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+        }
+    </style>
     
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Scripts continued -->
     <script src="https://kit.fontawesome.com/746ee6bfa4.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</head>
 
 <body>
     <!-- Header -->
@@ -66,42 +219,423 @@
     </div>
 
     <!-- Conference Info -->
-    <div class="container">
-        <div class="row text-center">
-            <h4 class="mb-4">CVPR 2026</h4>
-        </div>
+    <div class="container text-center" style="margin-bottom: 0.75rem;">
+        <a href="https://cvpr.thecvf.com/Conferences/2026" target="_blank" rel="noopener"
+           style="display: inline-flex; align-items: center; padding: 0.55rem 1.1rem; background: #1f1f1f; border-radius: 12px; text-decoration: none; line-height: 0;"
+           aria-label="CVPR 2026 — Denver, Colorado, June 3–7">
+            <img src="resources/cvpr2026_logo.svg"
+                 alt="CVPR 2026 — Denver, Colorado, June 3–7, 2026"
+                 style="height: 38px; width: auto; display: block;">
+        </a>
     </div>
 
     <!-- Links -->
-    <div class="container" style="max-width: 1100px">
-        <div class="row" style="text-align: center; padding: 1rem">
-            <div class="col-12 d-flex justify-content-center gap-4 flex-wrap">
-                <div class="col-auto">
-                    <a href="https://github.com/nianticspatial/cross-view-splatter.git" style="text-decoration: none;">
-                        <i class="fa fa-github fa-4x"></i>
-                        <div style="margin-top: 0.5rem;">Code and Data</div>
-                    </a>
-                </div>
-                <div class="col-auto">
-                    <a href="#BibTeX" style="text-decoration: none;">
-                        <i class="fa fa-book fa-4x"></i>
-                        <div style="margin-top: 0.5rem;">BibTeX</div>
-                    </a>
-                </div>
+    <div class="container" style="max-width: 1100px;">
+        <div class="d-flex justify-content-center flex-wrap gap-3" style="padding: 0.5rem 0 1.25rem;">
+            <!-- TODO: replace href="#" with the arXiv URL once it's live -->
+            <a href="#" class="link-pill"><i class="fa fa-file-pdf"></i> Paper</a>
+            <a href="https://github.com/nianticspatial/cross-view-splatter.git" class="link-pill"><i class="fa fa-github"></i> Code &amp; Data</a>
+            <a href="#BibTeX" class="link-pill"><i class="fa fa-book"></i> BibTeX</a>
+        </div>
+    </div>
+
+    <!-- Sticky in-page navigation -->
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="#video">Video</a>
+            <a href="#abstract">Abstract</a>
+            <a href="#method">Method</a>
+            <a href="#reconstructions">Reconstructions</a>
+            <a href="#results">Results</a>
+            <a href="#scene-comparison">Benchmark</a>
+            <a href="#BibTeX">Cite</a>
+        </div>
+    </nav>
+
+    <!-- Hero: teaser image + TL;DR caption -->
+    <div class="container section-block" style="max-width: 900px;">
+      <img
+        src="resources/teaser_cross_view_splatter.png"
+        alt="Cross-View Splatter teaser"
+        class="img-fluid d-block mx-auto"
+        style="border-radius: 2px;"
+      >
+      <p class="hero-caption">
+        <i class="fas fa-bolt"></i><strong>TL;DR:</strong> A feed-forward 3D Gaussian splatting model
+        that fuses GPS-tagged ground photos with orthorectified satellite imagery for improved outdoor
+        novel-view synthesis.
+      </p>
+    </div>
+
+    <!-- Video -->
+    <div class="container section-block" id="video" style="max-width: 900px;">
+        <div class="ratio ratio-16x9" style="border-radius: 6px; overflow: hidden;">
+            <iframe src="https://www.youtube.com/embed/LqLktJLvt_0?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0"
+                    title="Cross-View Splatter — video presentation"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Abstract -->
+    <div class="container content section-block" id="abstract" style="max-width: 900px;">
+        <h3 style="text-align: center;">Abstract</h3>
+        <hr>
+        <p>
+            We present <strong>Cross-View Splatter</strong>, a feed-forward method that predicts pixel-aligned Gaussian splats
+            for outdoor scenes captured at ground level and by satellite. Faithful reconstructions require good camera
+            coverage, but ground imagery is time-consuming and hard to capture at scale for large outdoor scenes.
+            Fortunately, satellite imagery can provide a global geometric prior that is easy to access via public APIs.
+            Cross-View Splatter fuses orthorectified satellite views with GPS-tagged ground photos to predict Gaussian
+            splats in a unified 3D coordinate frame. By aligning ground and bird’s-eye feature representations, our model
+            improves scene coverage and novel-view synthesis compared to ground imagery alone. We train on curated
+            georeferenced datasets and paired satellite–terrain data mined from open mapping services, and evaluate our
+            method on a new benchmark for novel-view synthesis with georeferenced imagery, allowing comparison to
+            prior state-of-the-art methods.
+        </p>
+    </div>
+
+    <!-- Method (short project-page style) -->
+    <div class="container content section-block" id="method" style="max-width: 900px;">
+        <h3 style="text-align: center;">Method</h3>
+        <hr>
+
+        <p>
+            We introduce a new task, <em>view synthesis with georeferenced imagery</em>, where the goal is to synthesize novel
+            views of outdoor scenes from sparse ground-level photos and a single orthorectified satellite image.
+        </p>
+
+        <!-- Method figure -->
+        <div class="row justify-content-center mb-3">
+            <div class="col-12">
+                <img
+                    src="resources/main_figure_cross_view_splatter.png"
+                    alt="Overview of the Cross-View Splatter method"
+                    class="img-fluid"
+                    style="border-radius: 2px;"
+                >
+            </div>
+        </div>
+
+        <p>
+            Our Cross-View Splatter model adapts the VGGT architecture and directly predicts
+            3D Gaussian splats in a unified 3D coordinate frame for both ground and satellite images. Ground and satellite images are encoded into a shared
+            feature space via cross-attention, and separate heads regress Gaussian attributes for each branch. The full model is trained on curated
+            georeferenced datasets and paired satellite–terrain data mined from public mapping and elevation sources, and
+            we evaluate it on a new benchmark for georeferenced novel view synthesis.
+        </p>
+
+    </div>
+
+    <!-- Reconstructions (paper Fig. 4) -->
+    <div class="container content section-block" id="reconstructions" style="max-width: 1100px;">
+        <h3 style="text-align: center;">Reconstructions</h3>
+        <hr>
+        <p style="text-align: center;">
+            Example outputs on scenes <em>not seen during training</em>.
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <img
+                    src="resources/fig4_reconstruction_outputs.png"
+                    alt="Predicted height maps, confidences, and Gaussian splats for held-out scenes"
+                    class="img-fluid d-block mx-auto"
+                    style="border-radius: 2px;"
+                >
+                <p style="text-align: center; font-size: 0.8em; color: #666; margin: 0.6rem auto 0; max-width: 900px;">
+                    Left to right: input ground images, input satellite image, predicted height map,
+                    height confidence (black: low, red: high), predicted ground Gaussians, and combined
+                    ground + satellite Gaussians.
+                </p>
             </div>
         </div>
     </div>
 
-    <div style="height: 5rem;"></div>
 
+    <!-- Results -->
+    <div class="container content section-block" id="results" style="max-width: 1100px;">
+        <h3 style="text-align: center;">Results</h3>
+        <hr>
+
+        <p>
+            Sparse-view novel-view synthesis on our georeferenced Tanks &amp; Temples and DL3DV
+            benchmarks (2 context views). Our combined ground + satellite reconstruction matches or
+            beats prior feed-forward methods on both datasets. See the <a href="#BibTeX">paper</a> for
+            the full 1-, 2-, and 3-context-view tables and per-scene breakdowns.
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle text-center" style="font-size: 0.95em;">
+                <thead>
+                    <tr>
+                        <th class="text-start">Method</th>
+                        <th>T&amp;T PSNR&nbsp;↑</th>
+                        <th>T&amp;T LPIPS&nbsp;↓</th>
+                        <th>DL3DV PSNR&nbsp;↑</th>
+                        <th>DL3DV LPIPS&nbsp;↓</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">MVSplat</td>
+                        <td>6.93</td><td>0.6997</td><td>6.27</td><td>0.7174</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">DepthSplat</td>
+                        <td>9.61</td><td>0.6077</td><td>8.58</td><td>0.6774</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">NoPoSplat</td>
+                        <td>8.97</td><td>0.6830</td><td>11.01</td><td>0.6665</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Long-LRM</td>
+                        <td>8.53</td><td>0.7054</td><td>9.74</td><td>0.6813</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">AnySplat</td>
+                        <td>9.85</td><td>0.5773</td><td>10.37</td><td>0.5702</td>
+                    </tr>
+                    <tr style="background: #fff3ec;">
+                        <td class="text-start"><strong>Cross-View Splatter (Ours)</strong></td>
+                        <td><strong>11.67</strong></td>
+                        <td><strong>0.5984</strong></td>
+                        <td><strong>12.10</strong></td>
+                        <td><strong>0.5940</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row align-items-center g-4" style="margin-top: 2.5rem;">
+            <div class="col-md-5">
+                <h5 style="margin: 0 0 0.6rem; text-align: left;">Where the satellite prior helps most.</h5>
+                <p style="font-size: 1rem; text-align: left; margin-bottom: 0;">
+                    Compared to the AnySplat baseline, we improve PSNR across all overlap
+                    bins — with the largest gains at <strong>low context-vs-target IoU</strong>.
+                </p>
+            </div>
+            <div class="col-md-7">
+                <img
+                    src="resources/fig8_stratified_psnr.png"
+                    alt="Stratified PSNR vs. context/target IoU on Tanks and Temples"
+                    class="img-fluid d-block"
+                    style="border-radius: 2px;"
+                >
+                <p style="text-align: center; font-size: 0.8em; color: #666; margin: 0.5rem 0 0;">
+                    PSNR vs. context/target IoU on geolocalized Tanks &amp; Temples (5% bins).
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Georeferenced View Synthesis Benchmark -->
+    <div class="container content section-block" id="scene-comparison" style="max-width: 1400px;">
+        <h3 style="text-align: center;">Benchmark Scenes</h3>
+        <hr>
+        <p>
+            To support a fair comparison with prior baselines and Cross-View Splatter, we manually geolocalize 10 scenes from <em>Tanks and Temples</em>
+            and 40 from <em>DL3DV</em> — aligning each COLMAP reconstruction to publicly available
+            satellite imagery in a shared coordinate frame. Drag any slider to compare the paired
+            ground and satellite views.
+        </p>
+
+        <h5 style="text-align: center; margin-top: 1.75rem; font-size: 0.95rem; font-weight: 600; color: #555; letter-spacing: 0.06em; text-transform: uppercase;">Tanks and Temples</h5>
+        
+        <div class="comparison-scroller">
+            <div class="comparison-card">
+                <p class="scene-name">Barn</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/barn_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/barn.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Truck</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/truck_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/truck.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Family</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/family_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/family.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Francis</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/francis_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/francis.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Horse</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/horse_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/horse.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Lighthouse</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/lighthouse_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/lighthouse.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Courthouse</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/courthouse_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/courthouse.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Ignatius</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/ignatius_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/ignatius.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Playground</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/playground_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/playground.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">Temple</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/tandt/images/temple_image.jpeg" alt="Ground">
+                    <img src="resources/tandt/zenith_data/temple.jpg" alt="Satellite">
+                </div>
+            </div>
+
+        </div>
+
+        <h5 style="text-align: center; margin-top: 1.75rem; font-size: 0.95rem; font-weight: 600; color: #555; letter-spacing: 0.06em; text-transform: uppercase;">DL3DV</h5>
+
+        <div class="comparison-scroller">
+            <div class="comparison-card">
+                <p class="scene-name">032dee9f</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/032dee9fb0a8bc1b90871dc5fe950080d0bcd3caf166447f44e60ca50ac04ec7.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/032dee9fb0a8bc1b90871dc5fe950080d0bcd3caf166447f44e60ca50ac04ec7.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">0a485338</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/0a485338bbdaf19ba9090b874bb36ef0599a9c9a475a382c22903cf5981c6ea6.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/0a485338bbdaf19ba9090b874bb36ef0599a9c9a475a382c22903cf5981c6ea6.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">0bfdd020</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/0bfdd020cf475b9c68e4b469d1d1a2d0cad303eefe8b78fb2307855afdaac8be.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/0bfdd020cf475b9c68e4b469d1d1a2d0cad303eefe8b78fb2307855afdaac8be.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">12649316</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/1264931635e127fb905c8953cbc2deadd0c763e633af7fbd9405a61ca849710c.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/1264931635e127fb905c8953cbc2deadd0c763e633af7fbd9405a61ca849710c.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">1d6a9ed4</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/1d6a9ed47cce39fd1c4d18f776bcc97e507b81bde921ca596bd91b0b02b5e414.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/1d6a9ed47cce39fd1c4d18f776bcc97e507b81bde921ca596bd91b0b02b5e414.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">073f5a9b</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/073f5a9b983ced6fb28b23051260558b165f328a16b2d33fe20585b7ee4ad561.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/073f5a9b983ced6fb28b23051260558b165f328a16b2d33fe20585b7ee4ad561.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">15ff83e2</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/15ff83e2531668d27c92091c97d31401ce323e24ee7c844cb32d5109ab9335f7.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/15ff83e2531668d27c92091c97d31401ce323e24ee7c844cb32d5109ab9335f7.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">165f5af8</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/165f5af8bfe32f70595a1c9393a6e442acf7af019998275144f605b89a306557.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/165f5af8bfe32f70595a1c9393a6e442acf7af019998275144f605b89a306557.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">26fd2335</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/26fd23358fa11fff0fb3180ef0b65591b486e20dcf753ce4a7aae49a37e370c7.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/26fd23358fa11fff0fb3180ef0b65591b486e20dcf753ce4a7aae49a37e370c7.jpg" alt="Satellite">
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <p class="scene-name">286239bd</p>
+                <div class="twentytwenty-container twentytwenty-custom">
+                    <img src="resources/dl3dv/images/286239bd0d4436b747987c40f8cbfc0675bb69435d4ab19a3f73b9d816d0c09a.jpg" alt="Ground">
+                    <img src="resources/dl3dv/satellite/286239bd0d4436b747987c40f8cbfc0675bb69435d4ab19a3f73b9d816d0c09a.jpg" alt="Satellite">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Acknowledgments -->
+    <section id="acknowledgments">
+        <div class="container content section-block" style="max-width: 900px;">
+            <h3>Acknowledgments</h3>
+            <hr>
+            <p>
+                We thank Zawar Qureshi and Jakub Powierza for compute infrastructure support and Alan Paul for help in
+                generating terrain data. MT, JK, and AS acknowledge funding from the Research Council of Finland
+                (362408, 339730).
+            </p>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
     <section id="BibTeX">
-        <div class="container content">
-            <h3 style="text-align: center;">BibTeX</h3>
+        <div class="container content section-block" style="max-width: 900px;">
+            <h3>BibTeX</h3>
             <hr>
             <p style="text-align: center;">
                 If you find this work useful for your research, please consider citing our paper:
             </p>
-                        <pre><code>@inproceedings{turkulainen2026crossviewsplatter,
+            <pre style="background:#f8f9fa; padding:1rem; border-radius:4px;"><code>@inproceedings{turkulainen2026crossviewsplatter,
     title     = {{Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images}},
     author    = {Turkulainen, Matias and Krishnan, Akshay and Aleotti, Filippo and Sayed, Mohamed and Garcia-Hernando, Guillermo and Kannala, Juho and Solin, Arno and Brostow, Gabriel and Turmukhambetov, Daniyar},
     booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
@@ -110,6 +644,13 @@
         </div>
     </section>
 
+    <!-- TwentyTwenty image comparison slider -->
+    <script src="static/css/jquery.event.move.js"></script>
+    <script src="static/css/jquery.twentytwenty.js"></script>
+    <script>
+        $(document).ready(function() { 
+            $(".twentytwenty-container").twentytwenty({ default_offset_pct: 0.5 });
+        });
+    </script>
 </body>
-
 </html>
