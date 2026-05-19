@@ -17,16 +17,34 @@
     <meta name="twitter:title" content="Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images">
     <meta name="twitter:description" content="Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-04KM71BRNB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-04KM71BRNB');
+    </script>
+
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <style>
+        .tldr-content {
+            background: #f8f9fb;
+            border: 1px solid #e2e5e9;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+        .tldr-content p {
+            margin: 0;
+            line-height: 1.45;
+        }
+    </style>
     
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/746ee6bfa4.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</head>
 
 <body>
     <!-- Header -->
@@ -66,42 +84,249 @@
     </div>
 
     <!-- Conference Info -->
-    <div class="container">
-        <div class="row text-center">
-            <h4 class="mb-4">CVPR 2026</h4>
-        </div>
+    <div class="container text-center" style="margin-bottom: 0.75rem;">
+        <a href="https://cvpr.thecvf.com/Conferences/2026" target="_blank" rel="noopener"
+           style="display: inline-flex; align-items: center; padding: 0.55rem 1.1rem; background: #1f1f1f; border-radius: 12px; text-decoration: none; line-height: 0;"
+           aria-label="CVPR 2026 — Denver, Colorado, June 3–7">
+            <img src="resources/cvpr2026_logo.svg"
+                 alt="CVPR 2026 — Denver, Colorado, June 3–7, 2026"
+                 style="height: 38px; width: auto; display: block;">
+        </a>
     </div>
 
     <!-- Links -->
-    <div class="container" style="max-width: 1100px">
-        <div class="row" style="text-align: center; padding: 1rem">
-            <div class="col-12 d-flex justify-content-center gap-4 flex-wrap">
-                <div class="col-auto">
-                    <a href="https://github.com/nianticspatial/cross-view-splatter.git" style="text-decoration: none;">
-                        <i class="fa fa-github fa-4x"></i>
-                        <div style="margin-top: 0.5rem;">Code and Data</div>
-                    </a>
-                </div>
-                <div class="col-auto">
-                    <a href="#BibTeX" style="text-decoration: none;">
-                        <i class="fa fa-book fa-4x"></i>
-                        <div style="margin-top: 0.5rem;">BibTeX</div>
-                    </a>
-                </div>
+    <div class="container" style="max-width: 1100px;">
+        <div class="d-flex justify-content-center flex-wrap gap-3" style="padding: 0.5rem 0 1.25rem;">
+            <!-- TODO: replace href="#" with the arXiv URL once it's live -->
+            <a href="#" class="link-pill"><i class="fa fa-file-pdf"></i> Paper</a>
+            <a href="https://github.com/nianticspatial/cross-view-splatter.git" class="link-pill"><i class="fa fa-github"></i> Code &amp; Data</a>
+            <a href="#BibTeX" class="link-pill"><i class="fa fa-book"></i> BibTeX</a>
+        </div>
+    </div>
+
+    <!-- Sticky in-page navigation -->
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="#video">Video</a>
+            <a href="#abstract">Abstract</a>
+            <a href="#method">Method</a>
+            <a href="#reconstructions">Reconstructions</a>
+            <a href="#results">Results</a>
+            <a href="#BibTeX">Cite</a>
+        </div>
+    </nav>
+
+    <!-- Hero: teaser image + TL;DR caption -->
+    <div class="container section-block" style="max-width: 900px;">
+      <img
+        src="resources/teaser_cross_view_splatter.jpg"
+        alt="Cross-View Splatter teaser"
+        class="img-fluid d-block mx-auto"
+        style="border-radius: 2px;"
+      >
+      <p class="hero-caption">
+        <i class="fas fa-bolt"></i><strong>TL;DR:</strong> A feed-forward 3D Gaussian splatting model
+        that fuses GPS-tagged ground photos with orthorectified satellite imagery for improved outdoor
+        novel-view synthesis.
+      </p>
+    </div>
+
+    <!-- Video -->
+    <div class="container section-block" id="video" style="max-width: 900px;">
+        <div class="ratio ratio-16x9" style="border-radius: 6px; overflow: hidden;">
+            <iframe src="https://www.youtube.com/embed/MjVoWM8K7Ec?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0"
+                    title="Cross-View Splatter — video presentation"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Abstract -->
+    <div class="container content section-block" id="abstract" style="max-width: 900px;">
+        <h3 style="text-align: center;">Abstract</h3>
+        <hr>
+        <p>
+            We present <strong>Cross-View Splatter</strong>, a feed-forward method that predicts pixel-aligned Gaussian splats
+            for outdoor scenes captured at ground level and by satellite. Faithful reconstructions require good camera
+            coverage, but ground imagery is time-consuming and hard to capture at scale for large outdoor scenes.
+            Fortunately, satellite imagery can provide a global geometric prior that is easy to access via public APIs.
+            Cross-View Splatter fuses orthorectified satellite views with GPS-tagged ground photos to predict Gaussian
+            splats in a unified 3D coordinate frame. By aligning ground and bird’s-eye feature representations, our model
+            improves scene coverage and novel-view synthesis compared to ground imagery alone. We train on curated
+            georeferenced datasets and paired satellite–terrain data mined from open mapping services, and evaluate our
+            method on a new benchmark for novel-view synthesis with georeferenced imagery, allowing comparison to
+            prior state-of-the-art methods.
+        </p>
+    </div>
+
+    <!-- Method (short project-page style) -->
+    <div class="container content section-block" id="method" style="max-width: 900px;">
+        <h3 style="text-align: center;">Method</h3>
+        <hr>
+
+        <p>
+            We introduce a new task, <em>view synthesis with georeferenced imagery</em>, where the goal is to synthesize novel
+            views of outdoor scenes from sparse ground-level photos and a single orthorectified satellite image.
+        </p>
+
+        <!-- Method figure -->
+        <div class="row justify-content-center mb-3">
+            <div class="col-12">
+                <img
+                    src="resources/main_figure_cross_view_splatter.png"
+                    alt="Overview of the Cross-View Splatter method"
+                    class="img-fluid"
+                    style="border-radius: 2px;"
+                >
+            </div>
+        </div>
+
+        <p>
+            Our Cross-View Splatter model adapts the VGGT architecture and directly predicts
+            3D Gaussian splats in a unified 3D coordinate frame for both ground and satellite images. Ground and satellite images are encoded into a shared
+            feature space via cross-attention, and separate heads regress Gaussian attributes for each branch. The full model is trained on curated
+            georeferenced datasets and paired satellite–terrain data mined from public mapping and elevation sources, and
+            we evaluate it on a new benchmark for georeferenced novel view synthesis.
+        </p>
+
+    </div>
+
+    <!-- Reconstructions (paper Fig. 4) -->
+    <div class="container content section-block" id="reconstructions" style="max-width: 1100px;">
+        <h3 style="text-align: center;">Reconstructions</h3>
+        <hr>
+        <p style="text-align: center;">
+            Example outputs on scenes <em>not seen during training</em>.
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <img
+                    src="resources/fig4_reconstruction_outputs.jpg"
+                    alt="Predicted height maps, confidences, and Gaussian splats for held-out scenes"
+                    class="img-fluid d-block mx-auto"
+                    style="border-radius: 2px;"
+                >
+                <p style="text-align: center; font-size: 0.8em; color: #666; margin: 0.6rem auto 0; max-width: 900px;">
+                    Left to right: input ground images, input satellite image, predicted height map,
+                    height confidence (black: low, red: high), predicted ground Gaussians, and combined
+                    ground + satellite Gaussians.
+                </p>
             </div>
         </div>
     </div>
 
-    <div style="height: 5rem;"></div>
 
+    <!-- Results -->
+    <div class="container content section-block" id="results" style="max-width: 1100px;">
+        <h3 style="text-align: center;">Results</h3>
+        <hr>
+
+        <p>
+            <strong>Benchmark.</strong> To support a fair comparison with prior baselines and Cross-View
+            Splatter, we manually geolocalize 10 scenes from <em>Tanks and Temples</em> and 40 from
+            <em>DL3DV</em> — aligning each COLMAP reconstruction to publicly available satellite imagery
+            in a shared coordinate frame. The full list of scenes, alignment data, and instructions for
+            fetching the corresponding satellite tiles will be available in our
+            <a href="https://github.com/nianticspatial/cross-view-splatter.git">GitHub repository</a>.
+        </p>
+
+        <p>
+            Sparse-view novel-view synthesis on our georeferenced Tanks &amp; Temples and DL3DV
+            benchmarks (2 context views). Our combined ground + satellite reconstruction matches or
+            beats prior feed-forward methods on both datasets. See the <a href="#BibTeX">paper</a> for
+            the full 1-, 2-, and 3-context-view tables and per-scene breakdowns.
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle text-center" style="font-size: 0.95em;">
+                <thead>
+                    <tr>
+                        <th class="text-start">Method</th>
+                        <th>T&amp;T PSNR&nbsp;↑</th>
+                        <th>T&amp;T LPIPS&nbsp;↓</th>
+                        <th>DL3DV PSNR&nbsp;↑</th>
+                        <th>DL3DV LPIPS&nbsp;↓</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">MVSplat</td>
+                        <td>6.93</td><td>0.6997</td><td>6.27</td><td>0.7174</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">DepthSplat</td>
+                        <td>9.61</td><td>0.6077</td><td>8.58</td><td>0.6774</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">NoPoSplat</td>
+                        <td>8.97</td><td>0.6830</td><td>11.01</td><td>0.6665</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Long-LRM</td>
+                        <td>8.53</td><td>0.7054</td><td>9.74</td><td>0.6813</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">AnySplat</td>
+                        <td>9.85</td><td>0.5773</td><td>10.37</td><td>0.5702</td>
+                    </tr>
+                    <tr style="background: #fff3ec;">
+                        <td class="text-start"><strong>Cross-View Splatter (Ours)</strong></td>
+                        <td><strong>11.67</strong></td>
+                        <td><strong>0.5984</strong></td>
+                        <td><strong>12.10</strong></td>
+                        <td><strong>0.5940</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row align-items-center g-4" style="margin-top: 2.5rem;">
+            <div class="col-md-5">
+                <h5 style="margin: 0 0 0.6rem; text-align: left;">Where the satellite prior helps most.</h5>
+                <p style="font-size: 1rem; text-align: left; margin-bottom: 0;">
+                    Compared to the AnySplat baseline, we improve PSNR across all overlap
+                    bins — with the largest gains at <strong>low context-vs-target IoU</strong>.
+                </p>
+            </div>
+            <div class="col-md-7">
+                <img
+                    src="resources/fig8_stratified_psnr.png"
+                    alt="Stratified PSNR vs. context/target IoU on Tanks and Temples"
+                    class="img-fluid d-block"
+                    style="border-radius: 2px;"
+                >
+                <p style="text-align: center; font-size: 0.8em; color: #666; margin: 0.5rem 0 0;">
+                    PSNR vs. context/target IoU on geolocalized Tanks &amp; Temples (5% bins).
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Acknowledgments -->
+    <section id="acknowledgments">
+        <div class="container content section-block" style="max-width: 900px;">
+            <h3>Acknowledgments</h3>
+            <hr>
+            <p>
+                We thank Zawar Qureshi and Jakub Powierza for compute infrastructure support and Alan Paul for help in
+                generating terrain data. MT, JK, and AS acknowledge funding from the Research Council of Finland
+                (362408, 339730).
+            </p>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
     <section id="BibTeX">
-        <div class="container content">
-            <h3 style="text-align: center;">BibTeX</h3>
+        <div class="container content section-block" style="max-width: 900px;">
+            <h3>BibTeX</h3>
             <hr>
             <p style="text-align: center;">
                 If you find this work useful for your research, please consider citing our paper:
             </p>
-                        <pre><code>@inproceedings{turkulainen2026crossviewsplatter,
+            <pre style="background:#f8f9fa; padding:1rem; border-radius:4px;"><code>@inproceedings{turkulainen2026crossviewsplatter,
     title     = {{Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images}},
     author    = {Turkulainen, Matias and Krishnan, Akshay and Aleotti, Filippo and Sayed, Mohamed and Garcia-Hernando, Guillermo and Kannala, Juho and Solin, Arno and Brostow, Gabriel and Turmukhambetov, Daniyar},
     booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
@@ -111,5 +336,4 @@
     </section>
 
 </body>
-
 </html>
