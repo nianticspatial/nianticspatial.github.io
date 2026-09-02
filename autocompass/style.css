@@ -1,0 +1,144 @@
+.container {
+  width: 75%;
+}
+
+a {
+  /* color: #df471c; */
+  color: #578ddb;
+}
+
+.spacer {
+  height: 100px;
+}
+
+hr {
+  margin-top: -1.2rem;
+  margin-bottom: 1rem;
+  border: 0;
+  /* border-top: 0.3rem solid #df471c; */
+  border-top: 0.3rem solid #578ddb;
+}
+
+p {
+  text-align: justify;
+  font-size: 1.2em;
+}
+
+h3 {
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  padding-top: 3rem;
+}
+
+.card {
+  margin-bottom: 5rem;
+}
+
+.card-text {
+  margin: 10px 0 10px 20px;
+}
+
+.scaled-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.feature-carousel {
+  width: 90%;
+  margin: 2rem auto 4rem;
+}
+
+.feature-carousel .carousel-indicators {
+  bottom: -3rem;
+}
+
+.feature-carousel .carousel-control-prev,
+.feature-carousel .carousel-control-next {
+  width: 8%;
+  z-index: 5;
+}
+
+.map-crop,
+.feature-comparison {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.map-crop img,
+.feature-layer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.orienternet-layer {
+  clip-path: inset(0 calc(100% - var(--position)) 0 0);
+}
+
+.comparison-label {
+  position: absolute;
+  top: 0.5rem;
+  z-index: 2;
+  padding: 0.15rem 0.4rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 0.8rem;
+}
+
+.label-left {
+  left: 0.5rem;
+}
+
+.label-right {
+  right: 0.5rem;
+}
+
+.feature-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+.feature-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--position);
+  z-index: 3;
+  width: 2px;
+  background: white;
+  transform: translateX(-1px);
+  pointer-events: none;
+}
+
+.feature-divider::after {
+  content: "↔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0.15rem 0.4rem;
+  border-radius: 50%;
+  color: #212529;
+  background: white;
+  transform: translate(-50%, -50%);
+}
+
+.feature-slider:focus-visible ~ .feature-divider {
+  outline: 3px solid #212529;
+}
