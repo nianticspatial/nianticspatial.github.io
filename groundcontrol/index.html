@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>GroundControl: Satellite-Conditioned Multi-View Diffusion for Reconstruction-Free Novel View Synthesis</title>
+    <meta name="description" content="GroundControl is a satellite-conditioned multi-view diffusion model for reconstruction-free outdoor novel-view synthesis.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta charset="utf-8">
+    <link rel="icon" href="resources/favicon.png">
+
+    <meta property="og:title" content="GroundControl: Satellite-Conditioned Multi-View Diffusion">
+    <meta property="og:description" content="A reconstruction-free multi-view diffusion model that conditions on satellite imagery for outdoor novel-view synthesis.">
+    <meta property="og:image" content="resources/teaser.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GroundControl: Satellite-Conditioned Multi-View Diffusion">
+    <meta name="twitter:description" content="A reconstruction-free multi-view diffusion model that conditions on satellite imagery for outdoor novel-view synthesis.">
+    <meta name="twitter:image" content="resources/teaser.jpg">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .tldr-content {
+            background: #f8f9fb;
+            border: 1px solid #e2e5e9;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+        .tldr-content p {
+            margin: 0;
+            line-height: 1.45;
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/746ee6bfa4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" style="text-align: center; padding: 2rem 15px">
+        <div class="row">
+            <h1 style="margin-bottom: 1.5rem;">GroundControl: Satellite-Conditioned Multi-View Diffusion for Reconstruction-Free Novel View Synthesis</h1>
+        </div>
+
+        <div class="row authors" style="text-align: center; margin-top: 1rem;">
+            <div class="col-12">
+                <h4 class="author-list">
+                    <span class="author-row">
+                        <a href="https://akshay-krishnan.github.io"><nobr>Akshay Krishnan<sup>1,2</sup></nobr></a>
+                        <a href="https://maturk.github.io/"><nobr>Matias Turkulainen<sup>1,3</sup></nobr></a>
+                        <a href="https://scholar.google.com/citations?user=ASP-uu4AAAAJ&hl=en"><nobr>Jamie Wynn<sup>1</sup></nobr></a>
+                        <a href="https://scholar.google.cat/citations?user=P2jZC8YAAAAJ&hl=de"><nobr>Zawar Qureshi<sup>1</sup></nobr></a>
+                        <a href="https://masayed.com"><nobr>Mohamed Sayed<sup>1</sup></nobr></a>
+                    </span>
+                    <span class="author-row">
+                        <a href="https://guiggh.github.io"><nobr>Guillermo Garcia-Hernando<sup>1</sup></nobr></a>
+                        <a href="https://scholar.google.com/citations?user=7wWsNNcAAAAJ&hl=en"><nobr>Sara Vicente<sup>1</sup></nobr></a>
+                        <a href="https://www.cc.gatech.edu/~hays/"><nobr>James Hays<sup>2</sup></nobr></a>
+                        <a href="https://michaelfirman.co.uk/"><nobr>Michael Firman<sup>1</sup></nobr></a>
+                        <a href="https://dantkz.github.io/"><nobr>Daniyar Turmukhambetov<sup>1</sup></nobr></a>
+                    </span>
+                </h4>
+                <p class="affil">
+                    <sup>1</sup>Niantic Spatial &nbsp;&nbsp;&nbsp;
+                    <sup>2</sup>Georgia Institute of Technology &nbsp;&nbsp;&nbsp;
+                    <sup>3</sup>Aalto University
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center" style="margin-bottom: 0.75rem;">
+        <a class="venue" href="https://wacv.thecvf.com/Conferences/2027" target="_blank" rel="noopener">WACV 2027</a>
+    </div>
+
+    <div class="container" style="max-width: 1100px;">
+        <div class="d-flex justify-content-center flex-wrap gap-3" style="padding: 0.5rem 0 1.25rem;">
+            <span class="link-pill link-pill-disabled" title="Coming soon"><i class="fa fa-file-pdf"></i> Paper</span>
+            <span class="link-pill link-pill-disabled" title="Coming soon"><i class="fa fa-file"></i> arXiv</span>
+            <span class="link-pill link-pill-disabled" title="Coming soon"><i class="fa fa-github"></i> Code</span>
+            <button type="button" class="link-pill" id="copyBibtex"><i class="fa fa-book"></i> <span>BibTeX</span></button>
+        </div>
+    </div>
+
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="#video">Video</a>
+            <a href="#abstract">Abstract</a>
+            <a href="#method">Method</a>
+            <a href="#comparisons">Comparisons</a>
+            <a href="#results">Results</a>
+            <a href="#BibTeX">Cite</a>
+        </div>
+    </nav>
+
+    <div class="container section-block figure-teaser">
+      <img
+        src="resources/teaser.jpg"
+        alt="GroundControl teaser comparing SEVA with satellite-conditioned novel-view synthesis"
+        class="img-fluid d-block mx-auto"
+        style="border-radius: 2px;"
+      >
+      <p class="hero-caption">
+        <i class="fas fa-bolt"></i><strong>TL;DR:</strong> We introduce GroundControl, a reconstruction-free multi-view diffusion model that conditions on satellite imagery to synthesize street-level novel views that follow the satellite scene layout.
+      </p>
+    </div>
+
+    <div class="container content section-block" id="video">
+        <div class="video-player">
+            <video id="heroVideo" controls muted loop playsinline autoplay preload="metadata"
+                   poster="resources/videos/thumb1.jpg">
+                <source src="resources/videos/video1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <p class="fig-caption">
+            Generating left and right views from front view alone (low overlap) on Metropolis driving scenes.
+            Ground truth (top), SEVA (middle), GroundControl (bottom); the center column is the front input.
+            Conditioned on a satellite image, GroundControl produces higher-quality views that follow the satellite scene layout.
+        </p>
+        <div class="video-thumbs" id="videoThumbs" role="tablist" aria-label="Choose a comparison video">
+            <button type="button" class="video-thumb active" role="tab" aria-selected="true"
+                    data-src="resources/videos/video1.mp4"
+                    data-poster="resources/videos/thumb1.jpg"
+                    aria-label="Show comparison video 1">
+                <img src="resources/videos/thumb1.jpg" alt="">
+            </button>
+            <button type="button" class="video-thumb" role="tab" aria-selected="false"
+                    data-src="resources/videos/video2.mp4"
+                    data-poster="resources/videos/thumb2.jpg"
+                    aria-label="Show comparison video 2">
+                <img src="resources/videos/thumb2.jpg" alt="">
+            </button>
+            <button type="button" class="video-thumb" role="tab" aria-selected="false"
+                    data-src="resources/videos/video3.mp4"
+                    data-poster="resources/videos/thumb3.jpg"
+                    aria-label="Show comparison video 3">
+                <img src="resources/videos/thumb3.jpg" alt="">
+            </button>
+        </div>
+    </div>
+
+    <div class="container content section-block" id="abstract">
+        <h3>Abstract</h3>
+        <hr>
+        <p>
+            Multi-view or video diffusion models have recently emerged as state-of-the-art approaches for novel-view synthesis from sparse image collections. While they can produce high-quality images, they tend to hallucinate unrealistic spatial layouts when synthesizing views outside the input views (scene extrapolation). We propose to address this challenge for outdoor scenes by using satellite images as an additional information source to condition the multi-view generative model. We introduce a new satellite-conditioned multi-view diffusion model that combines conditioning from a satellite image and street-level input images when generating novel views. Our cross-attention based conditioning allows us to retain pretrained multi-view diffusion priors to generate seamless, realistic novel views from a handful of source views, while also adhering to the scene layout as seen from satellite images. Our model does not use 3D scene reconstruction, and only relies on posed street and satellite views. Our experiments on outdoor datasets show that our model is better than both satellite-conditioned or street-view conditioned baselines on novel-view synthesis, especially on highly challenging cases where generated views have little to no overlap with source views.
+        </p>
+    </div>
+
+    <div class="container content section-block" id="method">
+        <h3>Method</h3>
+        <hr>
+
+        <p>
+            <strong>GroundControl</strong> is a satellite-conditioned multi-view diffusion model for outdoor novel-view synthesis.
+            Given sparse posed street-level photos and a single satellite image, it generates photorealistic target views that follow the satellite layout without reconstructing a 3D scene, estimating a height map, or requiring pixel-accurate 6DoF ground–satellite alignment.
+            The model needs only metric relative poses between cameras and a coarse 3DoF (X, Y, heading) satellite alignment.
+        </p>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-12">
+                <img
+                    src="resources/method.jpg"
+                    alt="Overview of the GroundControl architecture"
+                    class="img-fluid"
+                    style="border-radius: 2px;"
+                >
+                <p class="fig-caption">
+                    GroundControl adds ray-guided satellite attention to a frozen SEVA multi-view diffusion backbone.
+                    A DINOv3 encoder provides satellite features; only the new cross-attention blocks are trained.
+                </p>
+            </div>
+        </div>
+
+        <h5>Ray-guided cross-attention</h5>
+        <p>
+            Satellite images differ sharply from street-level photos in both appearance and viewpoint, so letting noisy diffusion tokens attend to the full top-down image is hard to learn.
+            GroundControl instead uses ray-guided cross-attention: each street-view token attends only to satellite tokens along its 3D ray, with Plücker ray and timestep embeddings added to the query.
+        </p>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-12">
+                <img
+                    src="resources/ray_guided.jpg"
+                    alt="Ray-guided cross-attention attends only along the camera ray in the satellite image"
+                    class="img-fluid"
+                    style="border-radius: 2px;"
+                >
+                <p class="fig-caption">
+                    Ray-guided cross-attention restricts each street-view token to satellite tokens along its 3D ray, rather than attending to the full top-down image.
+                </p>
+            </div>
+        </div>
+
+        <p>
+            These layers are added as residual blocks on a frozen SEVA backbone and zero-initialized, so the pretrained multi-view generative prior is preserved at the start of training.
+        </p>
+
+        <h5>Dual classifier-free guidance</h5>
+        <p>
+            At inference we use dual classifier-free guidance, with separate scales for input-view and satellite conditioning.
+            A single CFG coefficient would couple the two: turning up satellite adherence would also over-steer street-level appearance.
+            Dual CFG lets us strengthen layout fidelity independently, and trade photorealism for satellite adherence depending on the setting.
+        </p>
+    </div>
+
+    <div class="container content section-block" id="comparisons">
+        <h3>Comparisons</h3>
+        <hr>
+        <p style="text-align: center;">
+            Satellite conditioning improves layout fidelity when synthesizing views with little overlap from the inputs.
+        </p>
+
+        <p>
+            On driving data, GroundControl recovers buildings, roads, and street furniture that a street-view-only diffusion model invents or omits.
+            Each row below shows a satellite crop (input cameras in <span style="color:#d33; font-weight:600;">red</span>, the shown target in <span style="color:#2a7; font-weight:600;">green</span>), an example input view, the ground-truth target, then predictions from GroundControl, SEVA, and Sat2Density.
+        </p>
+
+        <div class="cmp-wrap">
+            <table class="cmp">
+                <thead>
+                    <tr>
+                        <th>Satellite view</th>
+                        <th>Example input</th>
+                        <th>Ground truth</th>
+                        <th class="ours">Ours</th>
+                        <th>SEVA</th>
+                        <th>Sat2Density</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-label"><td colspan="6">Metropolis</td></tr>
+                    <tr>
+                        <td><img src="resources/compare/m1_sat.jpg" alt="Metropolis satellite view with camera frustums"></td>
+                        <td><img src="resources/compare/m1_input.jpg" alt="Metropolis input ground view"></td>
+                        <td><img src="resources/compare/m1_gt.jpg" alt="Metropolis ground-truth target view"></td>
+                        <td class="ours"><img src="resources/compare/m1_ours.jpg" alt="GroundControl Metropolis prediction"></td>
+                        <td><img src="resources/compare/m1_seva.jpg" alt="SEVA Metropolis prediction"></td>
+                        <td><img src="resources/compare/m1_s2d.jpg" alt="Sat2Density Metropolis prediction"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="resources/compare/m2_sat.jpg" alt="Metropolis satellite view with camera frustums"></td>
+                        <td><img src="resources/compare/m2_input.jpg" alt="Metropolis input ground view"></td>
+                        <td><img src="resources/compare/m2_gt.jpg" alt="Metropolis ground-truth target view"></td>
+                        <td class="ours"><img src="resources/compare/m2_ours.jpg" alt="GroundControl Metropolis prediction"></td>
+                        <td><img src="resources/compare/m2_seva.jpg" alt="SEVA Metropolis prediction"></td>
+                        <td><img src="resources/compare/m2_s2d.jpg" alt="Sat2Density Metropolis prediction"></td>
+                    </tr>
+                    <tr class="group-label"><td colspan="6">nuScenes</td></tr>
+                    <tr>
+                        <td><img src="resources/compare/n1_sat.jpg" alt="nuScenes satellite view with camera frustums"></td>
+                        <td><img src="resources/compare/n1_input.jpg" alt="nuScenes input ground view"></td>
+                        <td><img src="resources/compare/n1_gt.jpg" alt="nuScenes ground-truth target view"></td>
+                        <td class="ours"><img src="resources/compare/n1_ours.jpg" alt="GroundControl nuScenes prediction"></td>
+                        <td><img src="resources/compare/n1_seva.jpg" alt="SEVA nuScenes prediction"></td>
+                        <td><img src="resources/compare/n1_s2d.jpg" alt="Sat2Density nuScenes prediction"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="resources/compare/n2_sat.jpg" alt="nuScenes satellite view with camera frustums"></td>
+                        <td><img src="resources/compare/n2_input.jpg" alt="nuScenes input ground view"></td>
+                        <td><img src="resources/compare/n2_gt.jpg" alt="nuScenes ground-truth target view"></td>
+                        <td class="ours"><img src="resources/compare/n2_ours.jpg" alt="GroundControl nuScenes prediction"></td>
+                        <td><img src="resources/compare/n2_seva.jpg" alt="SEVA nuScenes prediction"></td>
+                        <td><img src="resources/compare/n2_s2d.jpg" alt="Sat2Density nuScenes prediction"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="fig-caption" style="margin-bottom: 2.5rem;">
+            In-distribution results on Metropolis and nuScenes. Sat2Density panoramas are cropped to the target pinhole FOV.
+        </p>
+
+        <p>
+            The same satellite prior also helps on <em>DL3DV</em>, which is outside our driving-centric training distribution.
+            These results use the geolocalized outdoor split from <a href="https://nianticspatial.github.io/cross-view-splatter/">Cross-View Splatter</a>.
+            Sparse handheld captures still leave background structure underconstrained; GroundControl uses the top-down image to place buildings and open space more faithfully.
+        </p>
+
+        <div class="cmp-wrap">
+            <table class="cmp">
+                <thead>
+                    <tr>
+                        <th>Satellite view</th>
+                        <th>Example input</th>
+                        <th>Ground truth</th>
+                        <th class="ours">Ours</th>
+                        <th>SEVA</th>
+                        <th>Sat2Density</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="resources/compare/d1_sat.jpg" alt="DL3DV satellite view with camera frustums"></td>
+                        <td><img src="resources/compare/d1_input.jpg" alt="DL3DV input ground view"></td>
+                        <td><img src="resources/compare/d1_gt.jpg" alt="DL3DV ground-truth target view"></td>
+                        <td class="ours"><img src="resources/compare/d1_ours.jpg" alt="GroundControl DL3DV prediction"></td>
+                        <td><img src="resources/compare/d1_seva.jpg" alt="SEVA DL3DV prediction"></td>
+                        <td><img src="resources/compare/d1_s2d.jpg" alt="Sat2Density DL3DV prediction"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="resources/compare/d2_sat.jpg" alt="DL3DV satellite view with camera frustums"></td>
+                        <td><img src="resources/compare/d2_input.jpg" alt="DL3DV input ground view"></td>
+                        <td><img src="resources/compare/d2_gt.jpg" alt="DL3DV ground-truth target view"></td>
+                        <td class="ours"><img src="resources/compare/d2_ours.jpg" alt="GroundControl DL3DV prediction"></td>
+                        <td><img src="resources/compare/d2_seva.jpg" alt="SEVA DL3DV prediction"></td>
+                        <td><img src="resources/compare/d2_s2d.jpg" alt="Sat2Density DL3DV prediction"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="fig-caption" style="margin-bottom: 2.5rem;">
+            Out-of-distribution results on the geolocalized DL3DV split from <a href="https://nianticspatial.github.io/cross-view-splatter/">Cross-View Splatter</a>.
+        </p>
+
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <img
+                    src="resources/mvc.jpg"
+                    alt="Multi-view comparison of SEVA, GroundControl, and ground truth on a driving sequence"
+                    class="img-fluid d-block mx-auto"
+                    style="border-radius: 2px;"
+                >
+                <p class="fig-caption">
+                    Multi-view extrapolation on a driving sequence. GroundControl follows the true building layout across frames, while SEVA hallucinates inconsistent facades.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center" style="margin-top: 2.5rem;">
+            <div class="col-12">
+                <img
+                    src="resources/multiple_samples.jpg"
+                    alt="Unconditional SEVA extrapolation versus satellite-conditioned GroundControl samples"
+                    class="img-fluid d-block mx-auto"
+                    style="border-radius: 2px;"
+                >
+                <p class="fig-caption">
+                    Without satellite conditioning, SEVA samples diverge into different (often incorrect) layouts. GroundControl’s samples stay consistent with the satellite geometry while still varying in appearance.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content section-block" id="results">
+        <h3>Results</h3>
+        <hr>
+
+        <p>
+            <strong>In-distribution.</strong> We evaluate on held-out nuScenes (150 scenes) and Metropolis (36 scenes) splits that match our training domain.
+            SEVA produces plausible street views from its multi-view prior but weaker layout adherence.
+            Sat2Density, which uses satellite imagery alone, struggles to recover street-level appearance.
+            GroundControl improves both image quality and semantic layout, with the largest gains on Metropolis, where target cameras have very little overlap with the inputs.
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle text-center" style="font-size: 0.92em;">
+                <thead>
+                    <tr>
+                        <th class="text-start">nuScenes</th>
+                        <th>PSNR&nbsp;↑</th>
+                        <th>SSIM&nbsp;↑</th>
+                        <th>LPIPS&nbsp;↓</th>
+                        <th>IoU<sub>road</sub>&nbsp;↑</th>
+                        <th>IoU<sub>bdg</sub>&nbsp;↑</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">SEVA</td>
+                        <td>11.33</td><td>0.308</td><td><strong>0.616</strong></td><td>0.425</td><td>0.182</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Sat2Density</td>
+                        <td>10.68</td><td>0.301</td><td>0.714</td><td>—</td><td>—</td>
+                    </tr>
+                    <tr style="background: #fff3ec;">
+                        <td class="text-start"><strong>GroundControl</strong></td>
+                        <td><strong>11.88</strong></td>
+                        <td><strong>0.331</strong></td>
+                        <td>0.619</td>
+                        <td><strong>0.437</strong></td>
+                        <td><strong>0.200</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle text-center" style="font-size: 0.92em;">
+                <thead>
+                    <tr>
+                        <th class="text-start">Metropolis</th>
+                        <th>PSNR&nbsp;↑</th>
+                        <th>SSIM&nbsp;↑</th>
+                        <th>LPIPS&nbsp;↓</th>
+                        <th>IoU<sub>road</sub>&nbsp;↑</th>
+                        <th>IoU<sub>bdg</sub>&nbsp;↑</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">SEVA</td>
+                        <td>10.88</td><td>0.315</td><td>0.586</td><td>0.581</td><td>0.291</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Sat2Density</td>
+                        <td>9.07</td><td>0.346</td><td>0.743</td><td>—</td><td>—</td>
+                    </tr>
+                    <tr style="background: #fff3ec;">
+                        <td class="text-start"><strong>GroundControl</strong></td>
+                        <td><strong>12.81</strong></td>
+                        <td><strong>0.401</strong></td>
+                        <td><strong>0.547</strong></td>
+                        <td><strong>0.630</strong></td>
+                        <td><strong>0.372</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="fig-caption" style="margin-bottom: 2.2rem;">
+            Sparse-view novel-view synthesis on in-distribution driving datasets. Semantic IoU uses SAM3 road and building masks.
+        </p>
+
+        <p>
+            <strong>Out-of-distribution.</strong> On 39 geolocalized outdoor DL3DV sequences from <a href="https://nianticspatial.github.io/cross-view-splatter/">Cross-View Splatter</a> (3 input views, 37 target views), GroundControl generalizes despite being trained mainly on driving data.
+            It improves PSNR, SSIM, and multi-view consistency over SEVA, while remaining comparable in perceptual metrics.
+            While DL3DV has more input-target view overlap than Metropolis, GroundControl still improves multi-view consistency (lower TSED).
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle text-center" style="font-size: 0.95em;">
+                <thead>
+                    <tr>
+                        <th class="text-start">Method</th>
+                        <th>PSNR&nbsp;↑</th>
+                        <th>SSIM&nbsp;↑</th>
+                        <th>LPIPS&nbsp;↓</th>
+                        <th>TSED&nbsp;↓</th>
+                        <th>%&nbsp;Consistent&nbsp;↑</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">Sat2Density</td>
+                        <td>10.20</td><td>0.232</td><td>0.768</td><td>—</td><td>0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">ViewCrafter*</td>
+                        <td>13.35</td><td>0.260</td><td>0.547</td><td>3845.6</td><td>2.0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">SEVA</td>
+                        <td>14.91</td><td>0.360</td><td><strong>0.407</strong></td><td>22.75</td><td>63.0</td>
+                    </tr>
+                    <tr style="background: #fff3ec;">
+                        <td class="text-start"><strong>GroundControl (Ours)</strong></td>
+                        <td><strong>15.17</strong></td>
+                        <td><strong>0.372</strong></td>
+                        <td>0.414</td>
+                        <td><strong>18.35</strong></td>
+                        <td><strong>65.6</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="fig-caption" style="margin-bottom: 2.2rem;">
+            DL3DV benchmark. *ViewCrafter uses a continuous trajectory and a different input–target split.
+        </p>
+
+        <h5 style="margin: 2rem 0 0.6rem; text-align: left;">Ablating design choices.</h5>
+        <p>
+            Ablations on the Metropolis dataset show that simply treating the satellite image as another input camera view is not enough: a specialized satellite encoder is required.  
+            The use of ray-guided cross-attention, ray and timestep query embeddings, and encoder-side conditioning all matter for good satellite-conditioned generation.
+        </p>
+        <p>
+            Dual CFG adds a separate coefficient for satellite conditioning vs. input-image conditioning, and lets us trade perceptual quality for satellite adherence.
+        </p>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle text-center" style="font-size: 0.92em;">
+                <thead>
+                    <tr>
+                        <th class="text-start">Variant</th>
+                        <th>PSNR&nbsp;↑</th>
+                        <th>DINO&nbsp;↓</th>
+                        <th>SEG&nbsp;↑</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">Satellite as input view</td>
+                        <td>11.31</td><td>5.86</td><td>0.558</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">W/o ray-guided CA</td>
+                        <td>11.68</td><td>5.58</td><td>0.573</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">W/o ray &amp; timestep embeds</td>
+                        <td>11.37</td><td>5.31</td><td>0.579</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">UNet decoder conditioning</td>
+                        <td>11.29</td><td>5.40</td><td>0.572</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">W/o dual CFG</td>
+                        <td>12.71</td><td><strong>5.14</strong></td><td><strong>0.608</strong></td>
+                    </tr>
+                    <tr style="background: #fff3ec;">
+                        <td class="text-start"><strong>Ours</strong></td>
+                        <td><strong>12.81</strong></td>
+                        <td>5.25</td>
+                        <td>0.605</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="fig-caption">
+            Ablation study on the Metropolis dataset.
+        </p>
+    </div>
+
+    <div class="container content section-block" id="related">
+        <h3>Related work</h3>
+        <hr>
+        <ul class="cite-list">
+            <li>
+                <a href="https://arxiv.org/abs/2503.14489">Stable Virtual Camera: Generative View Synthesis with Diffusion Models</a>.
+                Jensen Zhou, Hang Gao, Vikram Voleti, Aaryaman Vasishta, Chun-Han Yao, Mark Boss, Philip Torr, Christian Rupprecht, and Varun Jampani.
+                ICCV, 2025.
+            </li>
+            <li>
+                <a href="https://arxiv.org/abs/2605.19656">Cross-View Splatter: Feed-Forward View Synthesis with Georeferenced Images</a>.
+                Matias Turkulainen, Akshay Krishnan, Filippo Aleotti, Mohamed Sayed, Guillermo Garcia-Hernando, Juho Kannala, Arno Solin, Gabriel Brostow, and Daniyar Turmukhambetov.
+                CVPR, 2026.
+            </li>
+        </ul>
+    </div>
+
+    <div class="container content section-block" id="acknowledgements">
+        <h3>Acknowledgements</h3>
+        <hr>
+        <p>
+            We thank Filippo Aleotti, Gabriel Brostow, and Alan Paul for their support and insightful feedback, and Jinghao Zhou for clarifications on SEVA.
+        </p>
+    </div>
+
+    <section id="BibTeX">
+        <div class="container content section-block">
+            <h3>BibTeX</h3>
+            <hr>
+            <p style="text-align: center;">
+                If you find this work useful for your research, please consider citing our paper:
+            </p>
+            <pre id="bibtexBlock" style="background:#f8f9fa; padding:1rem; border-radius:4px; text-align:left;"><code>@inproceedings{krishnan2027groundcontrol,
+    title     = {{GroundControl: Satellite-Conditioned Multi-View Diffusion for Reconstruction-Free Novel View Synthesis}},
+    author    = {Krishnan, Akshay and Turkulainen, Matias and Wynn, Jamie and Qureshi, Zawar and Sayed, Mohamed and Garcia-Hernando, Guillermo and Vicente, Sara and Hays, James and Firman, Michael and Turmukhambetov, Daniyar},
+    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+    year      = {2027}
+}</code></pre>
+        </div>
+    </section>
+    <script>
+        (function () {
+            const copyBtn = document.getElementById("copyBibtex");
+            const bibtex = document.getElementById("bibtexBlock");
+            if (copyBtn && bibtex) {
+                copyBtn.addEventListener("click", async () => {
+                    const text = bibtex.innerText.replace(/\n$/, "");
+                    try {
+                        await navigator.clipboard.writeText(text);
+                    } catch (err) {
+                        const area = document.createElement("textarea");
+                        area.value = text;
+                        area.setAttribute("readonly", "");
+                        area.style.position = "fixed";
+                        area.style.left = "-9999px";
+                        document.body.appendChild(area);
+                        area.select();
+                        document.execCommand("copy");
+                        area.remove();
+                    }
+                    const label = copyBtn.querySelector("span");
+                    const previous = label.textContent;
+                    label.textContent = "Copied";
+                    setTimeout(() => { label.textContent = previous; }, 1600);
+                });
+            }
+
+            const player = document.getElementById("heroVideo");
+            const thumbs = document.querySelectorAll(".video-thumb");
+            if (!player || !thumbs.length) return;
+
+            thumbs.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const src = button.getAttribute("data-src");
+                    const poster = button.getAttribute("data-poster");
+                    if (!src || player.currentSrc.endsWith(src.split("/").pop())) {
+                        thumbs.forEach((b) => {
+                            b.classList.toggle("active", b === button);
+                            b.setAttribute("aria-selected", b === button ? "true" : "false");
+                        });
+                        return;
+                    }
+                    thumbs.forEach((b) => {
+                        const on = b === button;
+                        b.classList.toggle("active", on);
+                        b.setAttribute("aria-selected", on ? "true" : "false");
+                    });
+                    player.pause();
+                    if (poster) player.poster = poster;
+                    player.src = src;
+                    player.load();
+                    const play = player.play();
+                    if (play && play.catch) play.catch(() => {});
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
