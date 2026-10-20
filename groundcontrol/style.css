@@ -1,0 +1,352 @@
+.container {
+  width: 75%;
+}
+
+a {
+  color: #df471c;
+}
+
+hr {
+  margin: -0.4rem auto 1.5rem;
+  border: 0;
+  border-top: 2px solid #df471c;
+  width: 56px;
+  opacity: 0.85;
+}
+
+p {
+  text-align: justify;
+  font-size: 1.2em;
+}
+
+h3 {
+  padding-top: 0;
+  padding-bottom: 0.6rem;
+  text-align: center;
+}
+
+h1 {
+  padding-top: 3rem;
+  max-width: 18em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.venue {
+  color: #222;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.venue:hover {
+  color: #df471c;
+}
+
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  background: #1f1f1f;
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+button.link-pill {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.link-pill i { font-size: 1.05rem; }
+.link-pill:hover {
+  background: #df471c;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+.link-pill-disabled,
+.link-pill-disabled:hover {
+  background: #9aa0a6;
+  transform: none;
+  cursor: default;
+}
+
+.page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid #e8eaee;
+}
+.page-nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  padding: 0.6rem 1rem;
+}
+.page-nav a {
+  color: #444;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  padding: 0.15rem 0.1rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+.page-nav a:hover {
+  color: #df471c;
+  border-bottom-color: #df471c;
+}
+
+section[id],
+div[id^="abstract"],
+div[id^="method"],
+div[id^="video"],
+div[id^="comparisons"],
+div[id^="results"],
+div[id^="related"],
+div[id^="acknowledgements"] {
+  scroll-margin-top: 70px;
+}
+
+#video.section-block {
+  max-width: 640px;
+  margin-top: 2rem;
+}
+.video-player {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 6px 18px rgba(20, 24, 30, 0.14);
+}
+.video-player video {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 1 / 1;
+  background: #111;
+}
+.video-thumbs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 14px auto 0;
+  padding: 12px 14px;
+  border: 1px solid #e8eaee;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(20, 24, 30, 0.08);
+}
+.video-thumb {
+  position: relative;
+  width: 120px;
+  aspect-ratio: 576 / 346;
+  padding: 0;
+  border: 1px solid #e2e5e9;
+  border-radius: 7px;
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  flex: 0 0 auto;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.85) brightness(0.88);
+  transition: filter 0.15s ease;
+}
+.video-thumb:hover,
+.video-thumb.active {
+  border-color: #df471c;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #df471c, 0 6px 14px rgba(20, 24, 30, 0.14);
+  transform: translateY(-2px);
+}
+.video-thumb:hover img,
+.video-thumb.active img {
+  filter: none;
+}
+
+.hero-caption {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  text-align: center !important;
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.5;
+}
+.hero-caption i {
+  color: #df471c;
+  margin-right: 0.35rem;
+}
+
+.section-block {
+  margin-top: 4rem;
+}
+.section-block:first-of-type {
+  margin-top: 2.5rem;
+}
+
+.cite-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 720px;
+  text-align: left;
+}
+.cite-list li {
+  font-size: 1.05em;
+  line-height: 1.5;
+  margin: 0 0 1.1rem;
+  text-align: left;
+}
+.cite-list li:last-child {
+  margin-bottom: 0;
+}
+
+.fig-caption {
+  text-align: center;
+  font-size: 0.8em;
+  color: #666;
+  margin: 0.6rem auto 0;
+  max-width: 900px;
+}
+
+.cmp-wrap {
+  overflow-x: auto;
+  margin: 1.25rem 0 0.5rem;
+}
+.cmp {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 6px;
+  table-layout: fixed;
+  font-size: 0.78rem;
+}
+.cmp th,
+.cmp td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  font-weight: 600;
+  color: #444;
+}
+.cmp thead th {
+  padding-bottom: 0.35rem;
+}
+.cmp .group-label td {
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: #222;
+  padding: 0.7rem 0 0.25rem 0.15rem;
+  letter-spacing: 0.02em;
+}
+.cmp img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 3px;
+  background: #eee;
+}
+.cmp .ours img {
+  outline: 2px solid #df471c;
+  outline-offset: -2px;
+  border-radius: 3px;
+}
+.cmp thead .ours {
+  color: #df471c;
+}
+
+.author-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 auto;
+  line-height: 1.65;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.author-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 1.05rem;
+  row-gap: 0.2rem;
+}
+.author-list a,
+.author-list nobr {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.figure-teaser {
+  max-width: 560px !important;
+}
+.figure-method,
+#method img,
+#comparisons > .row img,
+.figure-wide {
+  max-width: 700px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.content.section-block {
+  max-width: 760px;
+}
+.content h5 {
+  margin: 1.75rem 0 0.55rem;
+  text-align: left;
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+#comparisons.section-block,
+#results.section-block {
+  max-width: 760px;
+}
+.cmp-wrap {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.affil {
+  text-align: center;
+  margin-top: 0.35rem;
+}
+
+.table thead th {
+  white-space: nowrap;
+}
+.table tbody td {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .section-block { margin-top: 2.75rem; }
+  .page-nav-inner { gap: 0.25rem 1.1rem; padding: 0.5rem 0.75rem; }
+  .page-nav a { font-size: 0.85rem; }
+  .link-pill { padding: 0.5rem 1rem; font-size: 0.92rem; }
+  h1 { font-size: 1.6rem; padding-top: 1.5rem; }
+  p { font-size: 1.05em; }
+}
